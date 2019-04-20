@@ -9,8 +9,15 @@
  * Core: General Layout Style
  * -------------------------
  */
+
+html {
+  background-color: #f39c12;
+  /*overflow-y: hidden;*/
+}
+
 html,
 body {
+  margin-top: 2px;
   height: 100%;
 }
 .layout-boxed html,

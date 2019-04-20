@@ -7,21 +7,21 @@
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="<?php echo base_url('css/bower_components/bootstrap/dist/css/bootstrap.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('css/bower_components/font-awesome/css/font-awesome.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('css/bower_components/Ionicons/css/ionicons.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('css/dist/AdminLTE.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/bower_components/bootstrap/dist/css/bootstrap.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/bower_components/font-awesome/css/font-awesome.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/bower_components/Ionicons/css/ionicons.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/dist/AdminLTE.css'); ?>">
 
-  <link rel="stylesheet" href="<?php echo base_url('css/dist/skins/_all-skins.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/dist/skins/_all-skins.min.css'); ?>">
 
-<body class="hold-transition skin-yellow layout-top-nav">
+<body class="hold-transition skin-black layout-top-nav">
 <div class="wrapper">
 
   <header class="main-header">
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="<?php echo base_url(); ?>" class="navbar-brand"><b>Admin</b>LTE</a>
+          <a href="<?php echo base_url(); ?>" class="navbar-brand">WaForApp</a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -30,10 +30,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
+            <li class="active"><a href="<?= base_url(); ?>">Notice <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Forum</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Election <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
@@ -135,7 +135,7 @@
                         </h3>
                         <!-- The progress bar -->
                         <div class="progress xs">
-                          <!-- Change the css width attribute to simulate progress -->
+                          <!-- Change the assets/css width attribute to simulate progress -->
                           <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                             <span class="sr-only">20% Complete</span>
                           </div>
@@ -155,14 +155,14 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="<?php echo base_url(); ?>dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="<?php echo base_url('assets/img/admin.jpg'); ?>" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">Alexander Pierce</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="<?php echo base_url(); ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url('assets/img/admin.jpg'); ?>" class="img-circle" alt="User Image">
 
                   <p>
                     Alexander Pierce - Web Developer
@@ -205,7 +205,7 @@
   <!-- Full Width Column -->
   <div class="content-wrapper">
     <div class="container">
-      <!-- Content Header (Page header) -->
+<!--  Content Header (Page header) 
       <section class="content-header">
         <h1>
           Top Navigation
@@ -217,32 +217,167 @@
           <li class="active">Top Navigation</li>
         </ol>
       </section>
-
+ -->
       <!-- Main content -->
       <section class="content">
-        <div class="callout callout-info">
-          <h4>Tip!</h4>
 
-          <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a
-            sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and use regular
-            links instead.</p>
-        </div>
-        <div class="callout callout-danger">
-          <h4>Warning!</h4>
 
-          <p>The construction of this layout differs from the normal one. In other words, the HTML markup of the navbar
-            and the content will slightly differ than that of the normal layout.</p>
-        </div>
-        <div class="box box-default">
-          <div class="box-header with-border">
-            <h3 class="box-title">Blank Box</h3>
+
+      	<div class="row">
+	    	<div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="<?= base_url(); ?>assets/img/user4-128x128.jpg" alt="User profile picture">
+
+              <h3 class="profile-username text-center">Nina Mcintire</h3>
+
+              <p class="text-muted text-center">Software Engineer</p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Followers</b> <a class="pull-right">1,322</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Following</b> <a class="pull-right">543</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Friends</b> <a class="pull-right">13,287</a>
+                </li>
+              </ul>
+
+              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+            </div>
+            <!-- /.box-body -->
           </div>
-          <div class="box-body">
-            The great content goes here
-          </div>
-          <!-- /.box-body -->
+          <!-- /.box -->
+
         </div>
-        <!-- /.box -->
+        <!-- /.col -->
+        <div class="col-md-9">
+          	<div class="box box-primary">
+          		<div class="box-body">
+	                <!-- Post -->
+	                <div class="post">
+	                  <div class="user-block">
+	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/user1-128x128.jpg" alt="user image">
+	                        <span class="username">
+	                          <a href="#">Jonathan Burke Jr.</a>
+	                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+	                        </span>
+	                    <span class="description">Shared publicly - 7:30 PM today</span>
+	                  </div>
+	                  <!-- /.user-block -->
+	                  <p>
+	                    Lorem ipsum represents a long-held tradition for designers,
+	                    typographers and the like. Some people hate it and argue for
+	                    its demise, but others ignore the hate as they create awesome
+	                    tools to help create filler text for everyone from bacon lovers
+	                    to Charlie Sheen fans.
+	                  </p>
+	                  <ul class="list-inline">
+	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+	                    </li>
+	                    <li class="pull-right">
+	                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+	                        (5)</a></li>
+	                  </ul>
+
+	                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
+	                </div>
+	                <!-- /.post -->
+
+	                <!-- Post -->
+	                <div class="post clearfix">
+	                  <div class="user-block">
+	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/user7-128x128.jpg" alt="User Image">
+	                        <span class="username">
+	                          <a href="#">Sarah Ross</a>
+	                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+	                        </span>
+	                    <span class="description">Sent you a message - 3 days ago</span>
+	                  </div>
+	                  <!-- /.user-block -->
+	                  <p>
+	                    Lorem ipsum represents a long-held tradition for designers,
+	                    typographers and the like. Some people hate it and argue for
+	                    its demise, but others ignore the hate as they create awesome
+	                    tools to help create filler text for everyone from bacon lovers
+	                    to Charlie Sheen fans.
+	                  </p>
+
+	                  <form class="form-horizontal">
+	                    <div class="form-group margin-bottom-none">
+	                      <div class="col-sm-9">
+	                        <input class="form-control input-sm" placeholder="Response">
+	                      </div>
+	                      <div class="col-sm-3">
+	                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
+	                      </div>
+	                    </div>
+	                  </form>
+	                </div>
+	                <!-- /.post -->
+
+	                <!-- Post -->
+	                <div class="post">
+	                  <div class="user-block">
+	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/user6-128x128.jpg" alt="User Image">
+	                        <span class="username">
+	                          <a href="#">Adam Jones</a>
+	                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+	                        </span>
+	                    <span class="description">Posted 5 photos - 5 days ago</span>
+	                  </div>
+	                  <!-- /.user-block -->
+	                  <div class="row margin-bottom">
+	                    <div class="col-sm-6">
+	                      <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo1.png" alt="Photo">
+	                    </div>
+	                    <!-- /.col -->
+	                    <div class="col-sm-6">
+	                      <div class="row">
+	                        <div class="col-sm-6">
+	                          <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo2.png" alt="Photo">
+	                          <br>
+	                          <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo3.jpg" alt="Photo">
+	                        </div>
+	                        <!-- /.col -->
+	                        <div class="col-sm-6">
+	                          <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo4.jpg" alt="Photo">
+	                          <br>
+	                          <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo1.png" alt="Photo">
+	                        </div>
+	                        <!-- /.col -->
+	                      </div>
+	                      <!-- /.row -->
+	                    </div>
+	                    <!-- /.col -->
+	                  </div>
+	                  <!-- /.row -->
+
+	                  <ul class="list-inline">
+	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+	                    </li>
+	                    <li class="pull-right">
+	                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+	                        (5)</a></li>
+	                  </ul>
+
+	                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
+	                </div>
+	                <!-- /.post -->
+           		</div>
+           	</div>
+		</div>
+	  </div>
+
+
+
+
       </section>
       <!-- /.content -->
     </div>
@@ -252,20 +387,20 @@
   <footer class="main-footer">
     <div class="container">
       <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
+        <b>Version</b> 1.0.0
       </div>
-      <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+      <strong>Copyright &copy; 2019 <a href="https://blen.com">Blen Studio</a>.</strong> All rights
       reserved.
     </div>
     <!-- /.container -->
   </footer>
 </div>
 
-<script src="<?php echo base_url('js/jquery/dist/jquery.min.js'); ?>"></script>
-<script src="<?php echo base_url('css/bower_components/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
-<script src="<?php echo base_url('css/bower_components/jquery-slimscroll/jquery.slimscroll.min.js'); ?>"></script>
-<script src="<?php echo base_url('css/bower_components/fastclick/lib/fastclick.js'); ?>"></script>
-<script src="<?php echo base_url('js/dist/adminlte.min.js'); ?>"></script>
-<script src="<?php echo base_url('js/dist/demo.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery/dist/jquery.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/css/bower_components/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/css/bower_components/jquery-slimscroll/jquery.slimscroll.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/css/bower_components/fastclick/lib/fastclick.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/dist/adminlte.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/dist/demo.js'); ?>"></script>
 </body>
 </html>
