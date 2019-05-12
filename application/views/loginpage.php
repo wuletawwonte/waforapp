@@ -15,7 +15,7 @@
 
 </head>
 <body class="hold-transition login-page">
-<div class="login-box box box-warning"><br><br>
+<div class="login-box box box-primary"><br><br>
   <div class="login-logo">
     <a href="<?= base_url(); ?>"><b>WaForApp</a>
   </div>
