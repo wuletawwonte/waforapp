@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bower_components/Ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/dist/AdminLTE.min.css">
 
+    <link rel="icon" href="<?= base_url('assets/img/favicon.ico'); ?>" type="image/x-icon">
+
 
 </head>
 <body class="hold-transition login-page">
