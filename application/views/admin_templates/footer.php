@@ -1,19 +1,22 @@
 
 
 
+ <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
 
-        </div>
-        <!-- /#wrapper -->
+
+	<script src="<?= base_url(); ?>assets/css/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="<?= base_url(); ?>assets/css/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="<?= base_url(); ?>assets/css/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="<?= base_url(); ?>assets/css/bower_components/fastclick/lib/fastclick.js"></script>
+	<script src="<?= base_url(); ?>assets/js/dist/adminlte.min.js"></script>
 
 
 
-		<script src="<?php echo base_url('assets/js/jquery/dist/jquery.min.js'); ?>"></script>
-		<script src="<?php echo base_url('assets/css/bower_components/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
-
-
-        <!-- Custom Theme JavaScript -->
-        <script src="<?php echo base_url('assets/js/dist/startmin.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/dist/metisMenu.min.js'); ?>"></script>
-
-    </body>
+</body>
 </html>

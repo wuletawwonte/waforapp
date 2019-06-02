@@ -228,12 +228,6 @@
 		        <span class="icon-bar"></span>
 		    </div>
 		    <div class="list-group">
-		        <span href="#" class="list-group-item active">
-		            Submenu
-<!-- 		            <span class="pull-right" id="slide-submenu">
-		                <i class="fa fa-times"></i>
-		            </span>
- -->		        </span>
 		        <a href="#" class="list-group-item">
 		            <i class="fa fa-comment-o"></i> Lorem ipsum
 		        </a>
@@ -257,7 +251,7 @@
         </div>
         <!-- /.col -->
         <div class="col-md-9">
-          	<div class="box box-primary">
+          	<div class="box box-warning">
           		<div class="box-body">
 	                <!-- Post -->
 	                <div class="post">

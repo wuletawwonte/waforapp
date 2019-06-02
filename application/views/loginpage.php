@@ -17,7 +17,7 @@
 
 </head>
 <body class="hold-transition login-page">
-<div class="login-box box box-primary"><br><br>
+<div class="login-box box box-warning"><br><br>
   <div class="login-logo">
     <a href="<?= base_url(); ?>"><b>WaForApp</a>
   </div>
@@ -35,11 +35,10 @@
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+      <button type="submit" class="btn btn-warning btn-block btn-flat">Sign In</button>
 
     </form>
     <br>
-    <a href="#">I forgot my password</a><br>
     <a href="<?= base_url(); ?>" class="text-center">Back to Home</a>
 
   </div>
