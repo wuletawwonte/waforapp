@@ -219,8 +219,12 @@
 
 
 
+
+
   	<div class="row">
-    	<div class="col-md-3 sidebar">
+
+
+<!--     	<div class="col-md-3 sidebar">
 
 		    <div class="mini-submenu">
 		        <span class="icon-bar"></span>
@@ -249,8 +253,9 @@
 		    </div>        
  
         </div>
-        <!-- /.col -->
-        <div class="col-md-9">
+ -->
+
+        <div class="col-md-10 col-md-offset-1">
           	<div class="box box-warning">
           		<div class="box-body">
 	                <!-- Post -->
