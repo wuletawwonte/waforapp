@@ -15,7 +15,20 @@
 
   	<link rel="stylesheet" href="<?php echo base_url('assets/css/skins/_all-skins.min.css'); ?>">
 	<link rel="icon" href="<?= base_url('assets/img/favicon.ico'); ?>" type="image/x-icon">
+  <style type="text/css">    
+    .se-pre-con {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: url(<?= base_url('assets/img/ripple.gif'); ?>) center no-repeat #eee;
+    }
+  </style>
+
 
 
 <body class="hold-transition skin-black layout-top-nav">
+<div class="se-pre-con"></div>
 <div class="wrapper">

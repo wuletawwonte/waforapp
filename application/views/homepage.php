@@ -225,7 +225,7 @@
 
 
 
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1 col-sm-11">
           	<div class="box" style="border-radius: 0; padding-top: 8px;">
           		<div class="box-body">
 	                <!-- Post -->

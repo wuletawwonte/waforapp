@@ -8,17 +8,30 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css">  
   <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/Ionicons/css/ionicons.min.css">
-
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/AdminLTE.min.css">
-
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/skins/_all-skins.min.css">
+
+  <link rel="icon" href="<?= base_url('assets/img/favicon.ico'); ?>" type="image/x-icon">
+  
+  <style type="text/css">    
+    .se-pre-con {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: url(<?= base_url('assets/img/ripple.gif'); ?>) center no-repeat #eee;
+    }
+  </style>
 
 
 </head>
 <body class="hold-transition skin-yellow-light sidebar-mini">
 <!-- Site wrapper -->
+<div class="se-pre-con"></div>
 <div class="wrapper">
 
   <header class="main-header">

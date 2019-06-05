@@ -19,5 +19,13 @@
 <script src="<?php echo base_url('assets/bower_components/fastclick/lib/fastclick.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/dist/adminlte.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/dist/demo.js'); ?>"></script>
+
+<script type="text/javascript">   
+     $(window).on('load', function() {
+        $(".se-pre-con").fadeOut("slow");     
+     });   
+</script>
+
+
 </body>
 </html>

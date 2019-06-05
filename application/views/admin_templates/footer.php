@@ -17,6 +17,11 @@
 	<script src="<?= base_url(); ?>assets/js/dist/adminlte.min.js"></script>
 
 
+<script type="text/javascript">   
+     $(window).on('load', function() {
+        $(".se-pre-con").fadeOut("slow");     
+     });   
+</script>
 
 </body>
 </html>
