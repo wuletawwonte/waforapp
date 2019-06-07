@@ -4,12 +4,12 @@
     <section class="content-header">
       <h1>
         Department
-        <small>Create new department here</small>
+        <small>Edit department here</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?= base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?= base_url(); ?>admin/departments"><i class="fa fa-university"></i> Departments</a></li>
-        <li class="active"><a href="#"> Create</a></li>
+        <li class="active"><a href="#"> Edit</a></li>
       </ol>
     </section>
 
@@ -25,19 +25,20 @@
           </div>
         </div>
 
-        <form action="<?= base_url('admin/create_department'); ?>" method="POST">
+        <form action="<?= base_url('admin/edit_department'); ?>" method="POST">
 	        <div class="box-body">
 	          <div class="row">
 	            <div class="col-md-6">
 
+	            	<input type="text" name="id" value="<?= $department['id']; ?>" hidden>
 					<div class="form-group">
 	                  <label for="name">Name</label>
-	                  <input type="text" class="form-control" name="name" required placeholder="Enter Department Name">
+	                  <input type="text" class="form-control" name="name" required value="<?= $department['name']; ?>">
 	                </div>
 
 					<div class="form-group">
 	                  <label>Description</label>
-	                  <textarea class="form-control" name="description" placeholder="Enter ..."></textarea>
+	                  <textarea class="form-control" name="description"><?= $department['description']; ?></textarea>
 	                </div>            
 
 	            </div>            
@@ -45,7 +46,7 @@
 
 					<div class="form-group">
 	                  <label for="exampleInputEmail1">Department Code</label>
-	                  <input type="text" class="form-control" name="code" placeholder="Enter Department Code if any">
+	                  <input type="text" class="form-control" name="code" value="<?= $department['code']; ?>">
 	                </div>
 
 	            </div>           
@@ -56,7 +57,7 @@
 
 			<div class="box-footer">
 	            <a type="button" href="<?= base_url(); ?>admin/departments" class="btn btn-default">Cancel</a>
-	            <button type="submit" class="btn btn-primary pull-right">Create</button>
+	            <button type="submit" class="btn btn-info pull-right">Edit</button>
 	    	</div>
     	</form>
 	</div>
