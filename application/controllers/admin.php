@@ -29,9 +29,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function create_student_view() {
-		$data['active_menu'] = 'create_student';
+		$data['active_menu'] = 'students';
 		$this->load->view('admin_templates/admin_header', $data);
-		$this->load->view('admin_create_student');
+		$this->load->view('admin_create_student_view');
 		$this->load->view('admin_templates/footer');
 	}
 
@@ -75,6 +75,14 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('error', 'Error, Unable to edit the department.');
 		}
 		redirect('admin/departments');		
+	}
+
+	public function students() {
+		$data['active_menu'] = 'students';
+		$data['students'] = $this->user->get_all_students();
+		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_students', $data);
+		$this->load->view('admin_templates/footer');				
 	}
 
 

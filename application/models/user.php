@@ -33,6 +33,18 @@ class User extends CI_Model {
 		return $res[0];
 	}
 
+	public function get_all_students() {
+		$this->db->where('user_type', 'student');
+		$this->db->order_by('created', 'DESC');
+		$data = $this->db->get('users');
+		if($data->num_rows() == 0) {
+			return false; 
+		} else {
+			return $data->result_array();		
+		}
+	}
+
+
 	// public function add() {
 	// 	$data = array(
 	// 		'firstname' => $this->input->post('firstname'), 

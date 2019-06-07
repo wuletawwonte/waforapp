@@ -195,28 +195,22 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li class="header">STUDENTS</li>
-        <li>
-          <a href="#">
-            <i class="fa fa-th-list"></i> <span>List</span>
+        <li <?php if($active_menu == 'students') echo "class='active'" ?>>
+          <a href="<?= base_url('admin/students'); ?>">
+            <i class="fa fa-users"></i> <span>Students</span>
           </a>
         </li>
-        <li <?php if($active_menu == 'create_student') echo "class='active'" ?>>
-          <a href="<?= base_url('admin/create_student_view'); ?>">
-            <i class="fa fa-user-plus"></i> <span>Create</span>
-          </a>
-        </li>
+
         <li>
           <a href="#">
-            <i class="fa fa-file-excel-o"></i> <span>Import</span>
+            <i class="fa fa-file-excel-o"></i> <span>Import/Export</span>
           </a>
         </li>
         <li>
           <a href="#">
-            <i class="fa fa-users"></i> <span>Student Council</span>
+            <i class="fa fa-user-secret"></i> <span>Student Council</span>
           </a>
         </li>
-        <li class="header">OTHERS</li>
         <li <?php if($active_menu == 'departments') echo "class='active'" ?>>
           <a href="<?= base_url(); ?>admin/departments">
             <i class="fa fa-university"></i>
