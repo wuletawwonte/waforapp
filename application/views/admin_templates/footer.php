@@ -3,9 +3,9 @@
 
  <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2019 <a href="https://adminlte.io">Blen Studio</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -19,7 +19,7 @@
 
 <script type="text/javascript">   
      $(window).on('load', function() {
-        $(".se-pre-con").fadeOut("slow");     
+        $(".se-pre-con").fadeOut();     
      });   
 </script>
 

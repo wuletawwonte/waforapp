@@ -29,6 +29,29 @@ class Admin extends CI_Controller {
 		$this->load->view('admin_templates/footer');
 	}
 
+	public function create_student_view() {
+		$data['active_menu'] = 'create_student';
+		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_create_student');
+		$this->load->view('admin_templates/footer');
+	}
+
+	public function departments() {
+		$data['active_menu'] = 'departments';
+		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_departments');
+		$this->load->view('admin_templates/footer');
+
+	}
+
+	public function create_department_view() {
+		$data['active_menu'] = 'departments';
+		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_create_department_view');
+		$this->load->view('admin_templates/footer');
+
+	}
+
 
 
 }

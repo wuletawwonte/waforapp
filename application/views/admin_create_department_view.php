@@ -7,7 +7,9 @@
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="active"><a href="<?= base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="<?= base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="<?= base_url(); ?>admin/departments"><i class="fa fa-university"></i> Departments</a></li>
+        <li class="active"><a href="#"><i class="fa fa-university"></i> Create</a></li>
       </ol>
     </section>
 

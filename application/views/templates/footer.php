@@ -22,7 +22,7 @@
 
 <script type="text/javascript">   
      $(window).on('load', function() {
-        $(".se-pre-con").fadeOut("slow");     
+        $(".se-pre-con").fadeOut();     
      });   
 </script>
 
