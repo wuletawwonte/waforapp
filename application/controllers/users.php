@@ -17,7 +17,7 @@ class Users extends CI_Controller {
 		if($this->form_validation->run()){
 			$userdata = $this->user->get_user('username', $this->input->post('username'));
 			$data = array(
-				'name' => $userdata['firstname'].' '.$userdata['lastname'],
+				'name' => $userdata['first_name'].' '.$userdata['middle_name'],
 				'username' => $this->input->post('username'),
 				'is_logged_in' => TRUE,
 				'user_type' => $userdata['user_type'],

@@ -72,7 +72,7 @@
                     <label>Department: </label>
                     <select name="department" class="form-control">
                         <?php foreach($departments as $department) { ?>
-                        <option value="<?= $department['id']; ?>"><?= $department['name']; ?></option>
+                        <option value="<?= $department['did']; ?>"><?= $department['name']; ?></option>
                         <?php } ?>
                     </select>
                 </div>

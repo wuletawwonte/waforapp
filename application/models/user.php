@@ -92,63 +92,43 @@ class User extends CI_Model {
 		return true;
 	}
 
+	public function get_student_councils() {
+		$cond = array(
+			'user_type' => 'student', 
+			'student_council' => '1'
+			);
+		$this->db->where($cond);
+		$this->db->order_by('id', 'DESC');
+		$this->db->from('users');
+		$this->db->join('departments', 'departments.did = users.department');
+		$data = $this->db->get();
+		if($data->num_rows() == 0) {
+			return false; 
+		} else {
+			return $data->result_array();		
+		}		
+	}
 
+	public function get_non_student_councils() {
+		$cond = array(
+			'user_type' => 'student', 
+			'student_council' => '0'
+			);
+		$this->db->where($cond);
+		$this->db->from('users');
+		$data = $this->db->get();
+		if($data->num_rows() == 0) {
+			return false; 
+		} else {
+			return $data->result_array();		
+		}		
+	}
 
-
-	// public function add() {
-	// 	$data = array(
-	// 		'firstname' => $this->input->post('firstname'), 
-	// 		'lastname' => $this->input->post('lastname'), 
-	// 		'username' => $this->input->post('username'), 
-	// 		'password' => md5($this->input->post('password')), 
-	// 		'role' => $this->input->post('role'), 
-	// 		'church' => $this->input->post('church'), 
-	// 		'user_type' => 'administrator' 
-	// 		);
-	// 	if($this->db->insert('users', $data)) {
-	// 		return true;
-	// 	} else {
-	// 		return false;
-	// 	}
-	// }
-
-	// public function update_user() {
-	// 	$data = array(
-	// 		'firstname' => $this->input->post('firstname'), 
-	// 		'lastname' => $this->input->post('lastname'), 
-	// 		'username' => $this->input->post('username'), 
-	// 		'role' => $this->input->post('role'), 
-	// 		'church' => $this->input->post('church'), 
-	// 		'user_type' => 'administrator' 
-	// 		);
-	// 	$this->db->where('id', $this->input->post('id'));
-	// 	if($this->db->update('users', $data)) {
-	// 		return true;
-	// 	} else {
-	// 		return false;
-	// 	}
-	// }
-
-	// public function get_all() {
-	// 	$res = $this->db->get('users');
-	// 	return $res->result_array();
-	// }
-
-	// public function get_my($attrib) {
-	// 	$this->db->where('username', $this->session->userdata('username'));
-	// 	$data = $this->db->get('users');
-	// 	$data = $data->result_array(); 
-
-	// 	return $data[0][$attrib];
-	// }
-
-	// public function edit_one($attrib, $value) {
-	// 	$data = array(
-	// 		$attrib => $value
-	// 		);
-	// 	$this->db->where('username', $this->session->userdata('username'));
-	// 	$this->db->update('users', $data);
-	// }
+	public function add_student_council() {
+		$data = array('student_council' => '1');
+		$this->db->where('id', $this->input->post('student_id'));
+		$this->db->update('users', $data);
+	}
 
 
 

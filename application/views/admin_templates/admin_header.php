@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css"> 
   <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/Ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/select2/dist/css/select2-bootstrap.min.css">
 
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/skins/_all-skins.min.css">
@@ -28,6 +29,11 @@
       background: url(<?= base_url('assets/img/ripple.gif'); ?>) center no-repeat #eee;
     }
   </style>
+
+  <script src="<?= base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="<?= base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="<?= base_url(); ?>assets/bower_components/select2/dist/js/select2.min.js"></script>
+
 
 
 </head>
@@ -205,18 +211,23 @@
 
         <li>
           <a href="#">
-            <i class="fa fa-file-excel-o"></i> <span>Import/Export</span>
+            <i class="fa fa-file-excel-o"></i> <span>Import</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <i class="fa fa-user-secret"></i> <span>Student Council</span>
+        <li <?php if($active_menu == 'student_councils') echo "class='active'" ?>>
+          <a href="<?= base_url(); ?>admin/student_councils">
+            <i class="fa fa-user-secret"></i> <span>Student Councils</span>
           </a>
         </li>
         <li <?php if($active_menu == 'departments') echo "class='active'" ?>>
           <a href="<?= base_url(); ?>admin/departments">
             <i class="fa fa-university"></i>
             <span>Departments</span>
+          </a>
+        </li>
+        <li <?php if($active_menu == 'settings') echo "class='active'" ?>>
+          <a href="<?= base_url(); ?>admin/settings">
+            <i class="fa fa-gears"></i> <span>Settings</span>
           </a>
         </li>
 

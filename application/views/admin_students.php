@@ -56,7 +56,7 @@
               <?php foreach($students as $student) { ?>
 
                 <tr>
-                  <td><?= $student['id_number']; ?></td>
+                  <td><a href="#"><?= $student['id_number']; ?></a></td>
                   <td><?= $student['first_name']." ".$student['middle_name']; ?></td>
                   <td><?= $student['name']; ?></td>
                   <td><?= $student['year']; ?></td>

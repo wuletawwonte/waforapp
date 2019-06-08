@@ -5,7 +5,7 @@ class Admin extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model(array('user', 'department'));
+		$this->load->model(array('user', 'department', 'cnfg'));
 
 
 		if($this->session->userdata('is_logged_in') == FALSE) {
@@ -112,6 +112,37 @@ class Admin extends CI_Controller {
 		$this->load->view('admin_students', $data);
 		$this->load->view('admin_templates/footer');				
 	}
+
+	public function settings() {
+		$data['active_menu'] = 'settings';
+		$data['system_name'] = $this->cnfg->get('system_name');
+		$data['system_name_short'] = $this->cnfg->get('system_name_short');
+		$data['default_password'] = $this->cnfg->get('default_password');
+		$data['student_council_amount'] = $this->cnfg->get('student_council_amount');
+		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_settings', $data);
+		$this->load->view('admin_templates/footer');						
+	}
+
+	public function student_councils() {
+		$data['active_menu'] = 'student_councils';
+		$data['student_councils'] = $this->user->get_student_councils();
+		$data['students'] = $this->user->get_non_student_councils();
+		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_student_councils', $data);
+		$this->load->view('admin_templates/footer');						
+	}
+
+	public function add_student_council() {
+		$this->user->add_student_council();
+
+		redirect('admin/student_councils');
+	}
+
+
+
+
+
 
 
 }
