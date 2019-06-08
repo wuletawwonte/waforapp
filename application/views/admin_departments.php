@@ -59,7 +59,7 @@
                   <td><?= $department['name']; ?></td>
                   <td><?= $department['description']; ?></td>
                   <td>
-                    <a href="<?= base_url(); ?>admin/edit_department_view/<?= $department['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                    <a href="<?= base_url(); ?>admin/edit_department_view/<?= $department['did']; ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
                     <a href="" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>        

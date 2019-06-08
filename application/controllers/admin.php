@@ -78,6 +78,15 @@ class Admin extends CI_Controller {
 		$this->load->view('admin_templates/footer');		
 	}
 
+	public function edit_student_view($id) {
+		$data['active_menu'] = 'students';
+		$data['student'] = $this->user->get_one($id);
+		$data['departments'] = $this->department->get_all();
+		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_edit_student_view', $data);
+		$this->load->view('admin_templates/footer');		
+	}
+
 	public function edit_department() {
 		if($this->department->edit($this->input->post('id'))) {
 			$this->session->set_flashdata('success', 'Success, Department successfully edited.');
@@ -85,6 +94,15 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('error', 'Error, Unable to edit the department.');
 		}
 		redirect('admin/departments');		
+	}
+
+	public function edit_student() {
+		if($this->user->edit($this->input->post('id'))) {
+			$this->session->set_flashdata('success', 'Success, Student record successfully edited.');
+		} else {
+			$this->session->set_flashdata('error', 'Error, Unable to edit the student record.');
+		}
+		redirect('admin/students');		
 	}
 
 	public function students() {

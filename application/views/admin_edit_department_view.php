@@ -26,7 +26,7 @@
 	          <div class="row">
 	            <div class="col-md-6">
 
-	            	<input type="text" name="id" value="<?= $department['id']; ?>" hidden>
+	            	<input type="text" name="id" value="<?= $department['did']; ?>" hidden>
 					<div class="form-group">
 	                  <label for="name">Name</label>
 	                  <input type="text" class="form-control" name="name" required value="<?= $department['name']; ?>">

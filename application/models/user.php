@@ -35,9 +35,9 @@ class User extends CI_Model {
 
 	public function get_all_students() {
 		$this->db->where('user_type', 'student');
+		$this->db->order_by('id', 'DESC');
 		$this->db->from('users');
-		// $this->db->order_by('created', 'DESC');
-		$this->db->join('departments', 'departments.id = users.department');
+		$this->db->join('departments', 'departments.did = users.department');
 		$data = $this->db->get();
 		if($data->num_rows() == 0) {
 			return false; 
@@ -48,6 +48,7 @@ class User extends CI_Model {
 
 	public function create() {
 		$data = array(
+			'id_number' => $this->input->post('id_number'),
 			'first_name' => $this->input->post('first_name'), 
 			'middle_name' => $this->input->post('middle_name'),
 			'last_name' => $this->input->post('last_name'),
@@ -59,6 +60,35 @@ class User extends CI_Model {
 			'year' => $this->input->post('year')
 			);
 		$this->db->insert('users', $data);
+		return true;
+	}
+
+
+	public function get_one($id) {
+		$this->db->where('id', $id);
+		$data = $this->db->get('users');
+		
+		if($data->num_rows() == 0) {
+			return false;
+		} else {
+			return $data->result_array()[0];
+		}
+	}
+
+	public function edit($id) {
+		$data = array(
+			'id_number' => $this->input->post('id_number'), 
+			'first_name' => $this->input->post('first_name'), 
+			'middle_name' => $this->input->post('middle_name'), 
+			'last_name' => $this->input->post('last_name'), 
+			'email' => $this->input->post('email'), 
+			'sex' => $this->input->post('sex'), 
+			'department' => $this->input->post('department'),
+			'year' => $this->input->post('year')
+			);
+
+		$this->db->where('id', $id);
+		$this->db->update('users', $data);
 		return true;
 	}
 

@@ -28,7 +28,7 @@ class Department extends CI_Model {
 	}
 
 	public function get_one($id) {
-		$this->db->where('id', $id);
+		$this->db->where('did', $id);
 		$data = $this->db->get('departments');
 
 		return $data->result_array()[0];
@@ -41,7 +41,7 @@ class Department extends CI_Model {
 			'description' => $this->input->post('description')
 			);
 
-		$this->db->where('id', $id);
+		$this->db->where('did', $id);
 		$this->db->update('departments', $data);
 		return true;
 	}
