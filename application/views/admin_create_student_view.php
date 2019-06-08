@@ -23,35 +23,56 @@
           <h3 class="box-title">Fill the form below</h3>
         </div>
 
-        <form action="<?= base_url('admin/create_department'); ?>" method="POST">
+        <form action="<?= base_url('admin/create_student'); ?>" method="POST">
           <div class="box-body">
             <div class="row">
 
                 <div class="form-group col-md-4">
-                  <label for="name">First Name</label>
-                  <input type="text" class="form-control" name="name" required placeholder="Enter Department Name">
+                  <label for="first_name">First Name</label>
+                  <input type="text" class="form-control" name="first_name" required placeholder="Enter first name">
                 </div>
 
                 <div class="form-group col-md-4">
-                  <label for="name">Middle Name</label>
-                  <input type="text" class="form-control" name="name" required placeholder="Enter Department Name">
+                  <label for="middle_name">Middle Name</label>
+                  <input type="text" class="form-control" name="middle_name" required placeholder="Enter middle name">
                 </div>
 
                 <div class="form-group col-md-4">
-                  <label for="name">Last Name</label>
-                  <input type="text" class="form-control" name="name" required placeholder="Enter Department Name">
+                  <label for="last_name">Last Name</label>
+                  <input type="text" class="form-control" name="last_name" required placeholder="Enter last name">
                 </div>
             </div>
             <div class="row">
 
                 <div class="form-group col-md-6">
-                  <label>Description</label>
-                  <textarea class="form-control" name="description" placeholder="Enter ..."></textarea>
-                </div>            
+                  <label for="email">Email Address</label>
+                  <input type="email" class="form-control" name="email" required placeholder="Enter email address">
+                </div>
+
+                <div class="form-group col-md-2">
+                  <label>Sex</label>
+                  <select class="form-control" name="sex">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+
+            </div><hr>
+            <div class="row">
 
                 <div class="form-group col-md-6">
-                  <label for="exampleInputEmail1">Department Code</label>
-                  <input type="text" class="form-control" name="code" placeholder="Enter Department Code if any">
+                    <label>Department: </label>
+                    <select name="department" class="form-control">
+                        <?php foreach($departments as $department) { ?>
+                        <option value="<?= $department['id']; ?>"><?= $department['name']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+
+
+                <div class="form-group col-md-2">
+                  <label for="year">Year</label>
+                  <input type="number" class="form-control" name="year" max="7" min="1" required placeholder="Enter year">
                 </div>
 
             </div>
@@ -59,7 +80,7 @@
           </div>
 
       <div class="box-footer">
-              <a type="button" href="<?= base_url(); ?>admin/departments" class="btn btn-default">Cancel</a>
+              <a type="button" href="<?= base_url(); ?>admin/students" class="btn btn-default">Cancel</a>
               <button type="submit" class="btn btn-primary pull-right">Create</button>
         </div>
       </form>
@@ -71,3 +92,5 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+

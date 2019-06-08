@@ -35,14 +35,34 @@ class User extends CI_Model {
 
 	public function get_all_students() {
 		$this->db->where('user_type', 'student');
-		$this->db->order_by('created', 'DESC');
-		$data = $this->db->get('users');
+		$this->db->from('users');
+		// $this->db->order_by('created', 'DESC');
+		$this->db->join('departments', 'departments.id = users.department');
+		$data = $this->db->get();
 		if($data->num_rows() == 0) {
 			return false; 
 		} else {
 			return $data->result_array();		
 		}
 	}
+
+	public function create() {
+		$data = array(
+			'first_name' => $this->input->post('first_name'), 
+			'middle_name' => $this->input->post('middle_name'),
+			'last_name' => $this->input->post('last_name'),
+			'username' => $this->input->post('first_name').".".$this->input->post('middle_name'),
+			'password' => md5('123456'),
+			'email' => $this->input->post('email'),
+			'sex' => $this->input->post('sex'),
+			'department' => $this->input->post('department'),
+			'year' => $this->input->post('year')
+			);
+		$this->db->insert('users', $data);
+		return true;
+	}
+
+
 
 
 	// public function add() {

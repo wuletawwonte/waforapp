@@ -30,6 +30,7 @@ class Admin extends CI_Controller {
 
 	public function create_student_view() {
 		$data['active_menu'] = 'students';
+		$data['departments'] = $this->department->get_all();
 		$this->load->view('admin_templates/admin_header', $data);
 		$this->load->view('admin_create_student_view');
 		$this->load->view('admin_templates/footer');
@@ -58,6 +59,15 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('error', 'Error, Unable to create new department.');
 		}
 		redirect('admin/departments');
+	}
+
+	public function create_student() {
+		if($this->user->create()) {
+			$this->session->set_flashdata('success', 'Success, New student account successfully created.');	
+		} else {
+			$this->session->set_flashdata('error', 'Error, Unable to create new student record.');			
+		}
+		redirect('admin/students');
 	}
 
 	public function edit_department_view($id) {
