@@ -34,7 +34,7 @@ class User extends CI_Model {
 	}
 
 	public function get_all_students() {
-		$this->db->where('user_type', 'student');
+		$this->db->where('user_type', 'student')->or_where('user_type', 'student_council');
 		$this->db->order_by('id', 'DESC');
 		$this->db->from('users');
 		$this->db->join('departments', 'departments.did = users.department');
@@ -52,7 +52,7 @@ class User extends CI_Model {
 			'first_name' => $this->input->post('first_name'), 
 			'middle_name' => $this->input->post('middle_name'),
 			'last_name' => $this->input->post('last_name'),
-			'username' => $this->input->post('first_name').".".$this->input->post('middle_name'),
+			'username' => strtolower($this->input->post('first_name')).'.'.strtolower($this->input->post('middle_name')),
 			'password' => md5('123456'),
 			'email' => $this->input->post('email'),
 			'sex' => $this->input->post('sex'),
@@ -81,6 +81,7 @@ class User extends CI_Model {
 			'first_name' => $this->input->post('first_name'), 
 			'middle_name' => $this->input->post('middle_name'), 
 			'last_name' => $this->input->post('last_name'), 
+			'username' => strtolower($this->input->post('first_name')).'.'.strtolower($this->input->post('middle_name')),
 			'email' => $this->input->post('email'), 
 			'sex' => $this->input->post('sex'), 
 			'department' => $this->input->post('department'),
@@ -93,11 +94,7 @@ class User extends CI_Model {
 	}
 
 	public function get_student_councils() {
-		$cond = array(
-			'user_type' => 'student', 
-			'student_council' => '1'
-			);
-		$this->db->where($cond);
+		$this->db->where('user_type', 'Student council');
 		$this->db->order_by('id', 'DESC');
 		$this->db->from('users');
 		$this->db->join('departments', 'departments.did = users.department');
@@ -110,11 +107,7 @@ class User extends CI_Model {
 	}
 
 	public function get_non_student_councils() {
-		$cond = array(
-			'user_type' => 'student', 
-			'student_council' => '0'
-			);
-		$this->db->where($cond);
+		$this->db->where("user_type", 'Student');
 		$this->db->from('users');
 		$data = $this->db->get();
 		if($data->num_rows() == 0) {
@@ -125,7 +118,7 @@ class User extends CI_Model {
 	}
 
 	public function add_student_council() {
-		$data = array('student_council' => '1');
+		$data = array('user_type' => 'Student council');
 		$this->db->where('id', $this->input->post('student_id'));
 		$this->db->update('users', $data);
 	}

@@ -21,27 +21,27 @@ class Users extends CI_Controller {
 				'username' => $this->input->post('username'),
 				'is_logged_in' => TRUE,
 				'user_type' => $userdata['user_type'],
-				'skin' => $userdata['skin'],
-				'language' => $userdata['language'],
 				'last_visited' => time()
 				);
 
 			$this->session->set_userdata($data);
 			
-			if($this->session->userdata('user_type') == "administrator") {
+			if($this->session->userdata('user_type') == "Administrator") {
 
 				redirect('admin/index');
 
+			} else if($this->session->userdata('user_type') == "Student council") {
+				redirect('student_council/index');
 			} else {
 				$this->session->unset_userdata('is_logged_id');
-				$this->session->set_flashdata("login_failed", "ያስገቡት መረጃ ትክክል አይደለም");
-				redirect('users/index');
+				$this->session->set_flashdata("error", "Username or password incorrect.");
+				redirect('welcome/loginpage');
 			}
 
 		} else {
 			$this->session->unset_userdata('is_logged_id');
-			$this->session->set_flashdata("login_failed", "ይቅርታ, ያስገቡት መረጃ ትክክል አይደለም");
-			redirect('users/index');
+			$this->session->set_flashdata("error", "Username or password incorrect.");
+			redirect('welcome/loginpage');
 		}	
 
 	}

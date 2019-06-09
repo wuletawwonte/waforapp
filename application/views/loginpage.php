@@ -17,25 +17,37 @@
 
 </head>
 <body class="hold-transition login-page">
-<div class="login-box box box-warning" style="border-radius: 0"><br><br>
-  <div class="login-logo">
+<div class="login-box box box-warning" style="border-radius: 0"><br>
+  <div class="login-logo" style="margin-bottom: 0px">
     <a href="<?= base_url(); ?>"><b>WaForApp</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
-
+      <?php  if($this->session->flashdata('error')) { ?>
+          <div class="callout callout-error">
+              <?php echo $this->session->flashdata('error'); ?>
+          </div>
+      <?php } ?>
     <form action="<?= base_url(); ?>users/login" method="post">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="username" placeholder="Username">
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
       <button type="submit" class="btn btn-warning btn-block btn-flat">Sign In</button>
+
+
+      <div class="social-auth-links text-center">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+        Facebook</a>
+      </div>
+
 
     </form>
     <br>

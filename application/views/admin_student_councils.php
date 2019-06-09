@@ -62,7 +62,6 @@
 		                  <th>ID Number</th>
 		                  <th>Name</th>
 		                  <th>Department</th>
-		                  <th>Year</th>
 		                  <th>Action</th>
 		                </tr>
 		              </thead>
@@ -74,10 +73,8 @@
 		                  <td><a href="#"><?= $student['id_number']; ?></a></td>
 		                  <td><?= $student['first_name']." ".$student['middle_name']; ?></td>
 		                  <td><?= $student['name']; ?></td>
-		                  <td><?= $student['year']; ?></td>
 		                  <td>
-		                    <a href="<?= base_url(); ?>admin/edit_student_view/<?= $student['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-		                    <a href="" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+		                    <a href="" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i></a>
 		                  </td>
 		                </tr>        
 

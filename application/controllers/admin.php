@@ -10,20 +10,22 @@ class Admin extends CI_Controller {
 
 		if($this->session->userdata('is_logged_in') == FALSE) {
 			redirect('welcome/loginpage');
-		} 
+		} else if($this->session->userdata('user_type') == 'Student council') {
+			redirect('student_council/index');
+		}
 
 	}
 
 	public function index() {
 		$data['active_menu'] = 'dashboard';
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_home');
 		$this->load->view('admin_templates/footer');
 	}
 
 	public function notices() {
 		$data['active_menu'] = 'notices';		
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_notices');
 		$this->load->view('admin_templates/footer');
 	}
@@ -31,7 +33,7 @@ class Admin extends CI_Controller {
 	public function create_student_view() {
 		$data['active_menu'] = 'students';
 		$data['departments'] = $this->department->get_all();
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_create_student_view');
 		$this->load->view('admin_templates/footer');
 	}
@@ -39,7 +41,7 @@ class Admin extends CI_Controller {
 	public function departments() {
 		$data['active_menu'] = 'departments';
 		$data['departments'] = $this->department->get_all(); 
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_departments');
 		$this->load->view('admin_templates/footer');
 
@@ -47,7 +49,7 @@ class Admin extends CI_Controller {
 
 	public function create_department_view() {
 		$data['active_menu'] = 'departments';
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_create_department_view');
 		$this->load->view('admin_templates/footer');
 	}
@@ -73,7 +75,7 @@ class Admin extends CI_Controller {
 	public function edit_department_view($id) {
 		$data['active_menu'] = 'departments';
 		$data['department'] = $this->department->get_one($id);
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_edit_department_view', $data);
 		$this->load->view('admin_templates/footer');		
 	}
@@ -82,7 +84,7 @@ class Admin extends CI_Controller {
 		$data['active_menu'] = 'students';
 		$data['student'] = $this->user->get_one($id);
 		$data['departments'] = $this->department->get_all();
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_edit_student_view', $data);
 		$this->load->view('admin_templates/footer');		
 	}
@@ -108,7 +110,7 @@ class Admin extends CI_Controller {
 	public function students() {
 		$data['active_menu'] = 'students';
 		$data['students'] = $this->user->get_all_students();
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_students', $data);
 		$this->load->view('admin_templates/footer');				
 	}
@@ -119,7 +121,7 @@ class Admin extends CI_Controller {
 		$data['system_name_short'] = $this->cnfg->get('system_name_short');
 		$data['default_password'] = $this->cnfg->get('default_password');
 		$data['student_council_amount'] = $this->cnfg->get('student_council_amount');
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_settings', $data);
 		$this->load->view('admin_templates/footer');						
 	}
@@ -128,7 +130,7 @@ class Admin extends CI_Controller {
 		$data['active_menu'] = 'student_councils';
 		$data['student_councils'] = $this->user->get_student_councils();
 		$data['students'] = $this->user->get_non_student_councils();
-		$this->load->view('admin_templates/admin_header', $data);
+		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_student_councils', $data);
 		$this->load->view('admin_templates/footer');						
 	}
