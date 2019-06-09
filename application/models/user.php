@@ -34,7 +34,7 @@ class User extends CI_Model {
 	}
 
 	public function get_all_students() {
-		$this->db->where('user_type', 'student')->or_where('user_type', 'student_council');
+		$this->db->where('user_type', 'Student')->or_where('user_type', 'Student council');
 		$this->db->order_by('id', 'DESC');
 		$this->db->from('users');
 		$this->db->join('departments', 'departments.did = users.department');
@@ -123,7 +123,18 @@ class User extends CI_Model {
 		$this->db->update('users', $data);
 	}
 
+	public function get_student_count() {
+		$this->db->where('user_type', 'Student')->or_where('user_type', 'Student council');
+		$data = $this->db->get('users');
 
+		return $data->num_rows();
+	}
+
+	public function remove_student_council($id) {
+		$data = array('user_type' => 'Student');
+		$this->db->where('id', $id);
+		$this->db->update('users', $data);
+	}
 
 
 }

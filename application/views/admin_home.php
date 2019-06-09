@@ -21,8 +21,8 @@
             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Members</span>
-              <span class="info-box-number">2,000</span>
+              <span class="info-box-text">Students</span>
+              <span class="info-box-number"><?= $student_count; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -36,7 +36,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Departments</span>
-              <span class="info-box-number">2<small></small></span>
+              <span class="info-box-number"><?= $department_count;?><small></small></span>
             </div>
             <!-- /.info-box-content -->
           </div>

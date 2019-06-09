@@ -46,5 +46,10 @@ class Department extends CI_Model {
 		return true;
 	}
 
+	public function get_department_count() {
+		$data = $this->db->get('departments');
+		return $data->num_rows();
+	}
+
 
 }

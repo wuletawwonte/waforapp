@@ -74,7 +74,7 @@
 		                  <td><?= $student['first_name']." ".$student['middle_name']; ?></td>
 		                  <td><?= $student['name']; ?></td>
 		                  <td>
-		                    <a href="" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i></a>
+		                    <a href="<?= base_url(); ?>admin/remove_student_council/<?= $student['id']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i></a>
 		                  </td>
 		                </tr>        
 

@@ -18,6 +18,8 @@ class Admin extends CI_Controller {
 
 	public function index() {
 		$data['active_menu'] = 'dashboard';
+		$data['student_count'] = $this->user->get_student_count();
+		$data['department_count'] = $this->department->get_department_count();
 		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_home');
 		$this->load->view('admin_templates/footer');
@@ -141,6 +143,10 @@ class Admin extends CI_Controller {
 		redirect('admin/student_councils');
 	}
 
+	public function remove_student_council($id) {
+		$this->user->remove_student_council($id);
+		redirect('admin/student_councils');
+	}
 
 
 

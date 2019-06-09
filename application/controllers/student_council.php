@@ -17,8 +17,10 @@ class Student_council extends CI_Controller {
 
 	public function index() {
 		$data['active_menu'] = 'dashboard';
+		$data['student_count'] = $this->user->get_student_count();
+		$data['department_count'] = $this->department->get_department_count();
 		$this->load->view('student_council_templates/header', $data);
-		$this->load->view('student_council_home');
+		$this->load->view('student_council_home', $data);
 		$this->load->view('student_council_templates/footer');
 	}
 
