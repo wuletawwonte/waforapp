@@ -53,7 +53,7 @@
 	                  <th>Status</th>
 	                  <th>User</th>
 	                  <th>Title</th>
-	                  <th>Date Created</th>
+	                  <th>Date Posted</th>
 	                  <th>Action</th>
 	                </tr>
 	                <?php foreach($notices as $notice) { ?>
@@ -63,7 +63,7 @@
 	                  <td><?= $notice['title']; ?></td>
 	                  <td><?= $notice['date_posted']; ?></td>
 	                  <td>
-	                    <a href="<?= base_url(); ?>admin/edit_department_view" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+	                    <a href="<?= base_url(); ?>student_council/edit_notice_view/<?= $notice['nid']; ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
 	                    <a href="" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
 				      </td>
 	                </tr>

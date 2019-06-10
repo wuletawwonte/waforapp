@@ -7,10 +7,6 @@ class Welcome extends CI_Controller {
 		
 		$this->load->model('notice');
 
-		if($this->session->userdata('is_logged_in') == TRUE) {
-			redirect('admin/index');
-		} 
-
 
 	}
 
@@ -24,7 +20,17 @@ class Welcome extends CI_Controller {
 
 
 	public function loginpage() {
-		$this->load->view('loginpage');
+		if($this->session->userdata('is_logged_in') == TRUE) {
+			if($this->session->userdata('user_type') == "Administrator") {
+				redirect('admin/index');
+			} else if($this->session->userdata('user_type') == "Student council") {
+				redirect('student_council/index');
+			} else {
+				redirect();
+			}
+		} else {
+			$this->load->view('loginpage');
+		}
 	}
 
 

@@ -44,7 +44,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="<?= base_url(); ?>" class="logo">
+    <a href="<?= base_url(); ?>admin/index" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>W</b>FP</span>
       <!-- logo for regular state and mobile devices -->
@@ -170,7 +170,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li <?php if($active_menu == 'dashboard') echo "class='active'" ?> >
-          <a href="<?= base_url(); ?>">
+          <a href="<?= base_url(); ?>admin/index">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>

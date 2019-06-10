@@ -8,7 +8,6 @@ class Users extends CI_Controller {
 		$this->load->model('user');
 	}
 
-
 	public function login() {
 
 		$this->form_validation->set_rules('username', 'username', 'required|trim|callback_validate_user_credentials');
