@@ -21,16 +21,15 @@ class Users extends CI_Controller {
 				'username' => $this->input->post('username'),
 				'is_logged_in' => TRUE,
 				'user_type' => $userdata['user_type'],
+				'user_id' => $userdata['id'],
 				'last_visited' => time()
 				);
 
 			$this->session->set_userdata($data);
 			
-			if($this->session->userdata('user_type') == "Administrator") {
-
+			if($this->session->userdata('user_type') === "Administrator") {
 				redirect('admin/index');
-
-			} else if($this->session->userdata('user_type') == "Student council") {
+			} else if($this->session->userdata('user_type') === "Student council") {
 				redirect('student_council/index');
 			} else {
 				$this->session->unset_userdata('is_logged_id');
@@ -59,7 +58,7 @@ class Users extends CI_Controller {
 
 	public function logout() {
 		$this->session->sess_destroy();
-		redirect();
+		redirect('welcome/loginpage');
 	}
 
 
@@ -75,5 +74,3 @@ class Users extends CI_Controller {
 
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

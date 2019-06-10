@@ -7,7 +7,7 @@
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="active"><a href="<?= base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="<?= base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
