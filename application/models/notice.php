@@ -37,7 +37,9 @@ class Notice extends CI_Model {
 
 	public function get_one($id) {
 		$this->db->where('nid', $id);
-		$data = $this->db->get('notices');
+		$this->db->from('notices');
+		$this->db->join('users', 'users.id = notices.user_id');
+		$data = $this->db->get();
 		$data = $data->result_array();
 
 		return $data[0];

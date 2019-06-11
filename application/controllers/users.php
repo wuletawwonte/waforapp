@@ -30,6 +30,8 @@ class Users extends CI_Controller {
 				redirect('admin/index');
 			} else if($this->session->userdata('user_type') === "Student council") {
 				redirect('student_council/index');
+			} else if($this->session->userdata('user_type') === "Student") {
+				redirect('welcome/index');
 			} else {
 				$this->session->unset_userdata('is_logged_id');
 				$this->session->set_flashdata("error", "Username or password incorrect.");
@@ -55,9 +57,13 @@ class Users extends CI_Controller {
 	}
 
 
-	public function logout() {
+	public function logout($backto) {
 		$this->session->sess_destroy();
-		redirect('welcome/loginpage');
+		if($backto == "homepage") {
+			redirect('welcome/index');
+		} else {
+			redirect('welcome/loginpage');
+		}
 	}
 
 

@@ -264,7 +264,6 @@
           	<div class="box" style="border-radius: 0; padding-top: 8px;">
           		<div class="box-body">
 	                <!-- Post -->
-	                <?php foreach ($notices as $notice) { ?>
 	                <div class="post">
 	                  <div class="user-block">
 	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/avatardefault.png" alt="user image">
@@ -286,6 +285,27 @@
 	                        (5)</a></li>
 	                  </ul>
 
+
+
+	                <?php foreach($comments as $comment) { ?>
+					<div class="direct-chat-msg">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left"><?= $comment['first_name'].' '.$comment['middle_name'];?></span>
+                        <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                      </div>
+                      <!-- /.direct-chat-info -->
+                      <img class="direct-chat-img" src="<?= base_url(); ?>assets/img/avatardefault.png" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                      	<?= $comment['comment_content']; ?>
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <?php } ?>
+
+
+
+
 	                  <form method="POST" action="<?= base_url(); ?>welcome/comment" class="form-horizontal" <?php if($this->session->userdata('is_logged_in') != "TRUE") echo "hidden"; ?>>
 	                    <div class="form-group margin-bottom-none">
 	                      <input type="text" name="nid" value="<?= $notice['nid']; ?>" hidden>
@@ -297,60 +317,12 @@
 	                      </div>
 	                    </div>
 	                  </form>
+
+
 	                </div>
 	                <!-- /.post -->
-	                <?php } ?>
 
 
-	                <!-- Post -->
-	                <div class="post">
-	                  <div class="user-block">
-	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/avatar.png" alt="User Image">
-	                        <span class="username">
-	                          <a href="#">Adam Jones</a>
-	                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-	                        </span>
-	                    <span class="description">Posted 5 photos - 5 days ago</span>
-	                  </div>
-	                  <!-- /.user-block -->
-	                  <div class="row margin-bottom">
-	                    <div class="col-sm-6">
-	                      <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo2.jpg" alt="Photo">
-	                    </div>
-	                    <!-- /.col -->
-	                    <div class="col-sm-6">
-	                      <div class="row">
-	                        <div class="col-sm-6">
-	                          <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo2.jpg" alt="Photo">
-	                          <br>
-	                          <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo9.jpg" alt="Photo">
-	                        </div>
-	                        <!-- /.col -->
-	                        <div class="col-sm-6">
-	                          <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo1.jpg" alt="Photo">
-	                          <br>
-	                          <img class="img-responsive" src="<?= base_url(); ?>assets/img/photo4.jpg" alt="Photo">
-	                        </div>
-	                        <!-- /.col -->
-	                      </div>
-	                      <!-- /.row -->
-	                    </div>
-	                    <!-- /.col -->
-	                  </div>
-	                  <!-- /.row -->
-
-	                  <ul class="list-inline">
-	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-	                    </li>
-	                    <li class="pull-right">
-	                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-	                        (5)</a></li>
-	                  </ul>
-
-	                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-	                </div>
-	                <!-- /.post -->
            		</div>
            	</div>
 		</div>

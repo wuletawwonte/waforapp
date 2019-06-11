@@ -145,6 +145,7 @@
               </li>
             </ul>
           </li>
+          <li class="user user-menu"><a href="<?= base_url(); ?>welcome/index"><i class="fa fa-home"></i>Homepage</a></li>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

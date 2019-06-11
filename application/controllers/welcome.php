@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model('notice');
+		$this->load->model(array('notice','comment'));
 
 
 	}
@@ -31,6 +31,19 @@ class Welcome extends CI_Controller {
 		} else {
 			$this->load->view('loginpage');
 		}
+	}
+
+	public function notice($nid) {
+		$data['notice'] = $this->notice->get_one($nid);
+		$data['comments'] = $this->comment->get_comments($nid);
+		$this->load->view('templates/header');
+		$this->load->view('notice', $data);
+		$this->load->view('templates/footer');		
+	}
+
+	public function comment() {
+		$this->comment->add();
+		redirect('welcome/notice/'.$this->input->post('nid'));
 	}
 
 
