@@ -1,0 +1,110 @@
+
+<section class="content">
+
+  	<div class="row">
+
+		<div class="col-md-3 col-md-offset-1" >
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active" style="background: url('../assets/img/photo6.jpg') center center;">
+              <h3 class="widget-user-username"><?= $this->session->userdata('name'); ?></h3>
+              <h5 class="widget-user-desc"><?= $this->session->userdata('user_type'); ?></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $this->session->userdata('avatar'); ?>" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+
+
+              </div>
+              <!-- /.row -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Department</strong>
+
+              <p class="text-muted">
+                Studying B.Sc in <?= $this->session->userdata('department'); ?> at Wachamo University.
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+              <p class="text-muted">Wachamo, Southern Nations Nationalities and Peoples Region, Ethiopia</p>
+
+            </div>
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+
+
+
+	<div class="col-md-7">
+
+  
+          <!-- Horizontal Form -->
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit your profile information</h3>
+            </div>
+      <?php if($this->session->flashdata('success')) { ?>
+          <div class="callout callout-info">
+              <?php echo $this->session->flashdata('success'); ?>
+          </div>
+      <?php } else if($this->session->flashdata('error')) { ?>
+          <div class="callout callout-warning">
+              <?php echo $this->session->flashdata('error'); ?>
+          </div>
+      <?php } ?>
+
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" method="POST" action="<?= base_url(); ?>welcome/update_profile" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Avatar</label>
+
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control input-lg" name="userfile" accept="jpg|png">
+          					<span class="help-block">Upload your profile picture here...</span>                  
+        					</div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Username</label>
+
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputEmail3" value="<?= $this->session->userdata('username'); ?>" disabled>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="current_password" class="col-sm-3 control-label">Current Password</label>
+
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control" name="current_password" placeholder="Current Password">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="new_password" class="col-sm-3 control-label">New Password</label>
+
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control" name="new_password" placeholder="New Password">
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <a type="button" href="<?= base_url(); ?>" class="btn btn-default">Cancel</a>
+                <button type="submit" class="btn btn-info pull-right">Save</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+    </div>
+</section>

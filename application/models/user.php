@@ -28,7 +28,9 @@ class User extends CI_Model {
 
 	public function get_user($attrib, $username) {
 		$this->db->where($attrib, $username);
-		$res = $this->db->get('users');
+		$this->db->from('users');
+		$this->db->join('departments', 'departments.did = users.department');
+		$res = $this->db->get();
 		$res = $res->result_array();
 		return $res[0];
 	}
@@ -133,6 +135,14 @@ class User extends CI_Model {
 	public function remove_student_council($id) {
 		$data = array('user_type' => 'Student');
 		$this->db->where('id', $id);
+		$this->db->update('users', $data);
+	}
+
+	public function change_avatar($avatar) {
+		$data = array(
+			'avatar' => $avatar 
+			);
+		$this->db->where('id', $this->session->userdata('user_id'));
 		$this->db->update('users', $data);
 	}
 

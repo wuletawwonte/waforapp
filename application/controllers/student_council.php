@@ -11,7 +11,9 @@ class Student_council extends CI_Controller {
 			redirect('welcome/loginpage');
 		} else if($this->session->userdata('user_type') == 'Administrator') {
 			redirect('admin/index');
-		}
+		} else if($this->session->userdata('user_type') == 'Student') {
+			redirect('welcome/index');
+		} 
 
 	}
 

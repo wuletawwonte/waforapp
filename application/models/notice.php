@@ -19,6 +19,19 @@ class Notice extends CI_Model {
 			return $data->result_array();
 		}
 	}
+	public function get_few() {
+		$this->db->where('status', '1');
+		$this->db->order_by('nid', 'DESC');
+		$this->db->limit(5);
+		$this->db->from('notices');
+		$this->db->join('users', 'users.id = notices.user_id');
+		$data = $this->db->get();
+		if($data->num_rows() == 0) {
+			return false;
+		} else {
+			return $data->result_array();
+		}
+	}
 
 	public function create() {
 		$data = array(

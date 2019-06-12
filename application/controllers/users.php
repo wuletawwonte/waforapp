@@ -21,7 +21,8 @@ class Users extends CI_Controller {
 				'is_logged_in' => TRUE,
 				'user_type' => $userdata['user_type'],
 				'user_id' => $userdata['id'],
-				'last_visited' => time()
+				'avatar' => $userdata['avatar'],
+				'department' => $userdata['name']
 				);
 
 			$this->session->set_userdata($data);
