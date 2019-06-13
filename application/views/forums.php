@@ -20,10 +20,10 @@
 	                <?php foreach($latest_notices as $notice) { ?>
 	                <li class="item">
 	                  <div class="product-img">
-	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/avatardefault.png" alt="user image" >
+	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $notice['avatar']; ?>" alt="user image" >
 	                  </div>
 	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title"><?= character_limiter($notice['title'], 22); ?>
+	                    <a href="<?= base_url(); ?>welcome/notice/<?= $notice['nid'];?>" class="product-title"><?= character_limiter($notice['title'], 22); ?>
 	                      <span class="label label-warning pull-right">$1800</span></a>
 	                    <span class="product-description">
 	                          <?= $notice['first_name']." ".$notice['middle_name']; ?>
@@ -45,65 +45,45 @@
 
 
         <div class="col-md-8 col-sm-8">
+
+	        <?php if($this->session->flashdata('success')) { ?>
+	          <div class="callout callout-info">
+	              <?php echo $this->session->flashdata('success'); ?>
+	          </div>
+	        <?php } else if($this->session->flashdata('error')) { ?>
+	          <div class="callout callout-error">
+	              <?php echo $this->session->flashdata('error'); ?>
+	          </div>
+	        <?php } ?>
+
           	<div class="box" style="border-radius: 0; padding-top: 8px;">
+          		<div class="box-header">
+          			<h3 class="box-title">Top Questions</h3>
+          		
+  					<a href="<?= base_url(); ?>welcome/ask_question_view" class="btn btn-lg btn-info pull-right" <?php if($this->session->userdata('is_logged_in') != "TRUE") { ?> data-toggle="tooltip" title="Login first!" disabled <?php } ?> >Ask Question</a>        		
+          		</div>
           		<div class="box-body">
 
-		        <div class="callout callout-info">
+		        <div class="callout">
 		          <h4>Tip!</h4>
 		          <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a sidebar!</p>
 		        </div> 
 
 				<ul class="products-list product-list-in-box">
+					<?php foreach($forums as $forum) { ?>
 	                <li class="item">
 	                  <div class="product-img">
 	                    <a href=""> <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image"></a>
  					  </div>
 	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title">How do we change the profile picture of this system?
+	                    <a href="<?= base_url(); ?>welcome/forum_details/<?= $forum['fid']; ?>" class="product-title"><?= $forum['forum_question']; ?>
 	                      <span class="label label-warning pull-right">$1800</span></a>
 	                    <span class="product-description">
 	                          Samsung 32" 1080p 60Hz LED Smart HDTV.
 	                        </span>
 	                  </div>
 	                </li>
-	                <!-- /.item -->
-	                <li class="item">
-	                  <div class="product-img">
-	                    <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
-	                  </div>
-	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title">Where do we add the layout-top-nav class to the body tag to get this layout?
-	                      <span class="label label-info pull-right">$700</span></a>
-	                    <span class="product-description">
-	                          26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-	                        </span>
-	                  </div>
-	                </li>
-	                <!-- /.item -->
-	                <li class="item">
-	                  <div class="product-img">
-	                    <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
-	                  </div>
-	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title">How does this feature can be used with another feature? <span class="label label-danger pull-right">$350</span></a>
-	                    <span class="product-description">
-	                          Xbox One Console Bundle with Halo Master Chief Collection.
-	                        </span>
-	                  </div>
-	                </li>
-	                <!-- /.item -->
-	                <li class="item">
-	                  <div class="product-img">
-	                    <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
-	                  </div>
-	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title">PlayStation 4
-	                      <span class="label label-success pull-right">$399</span></a>
-	                    <span class="product-description">
-	                          PlayStation 4 500GB Console (PS4)
-	                        </span>
-	                  </div>
-	                </li>
+	                <?php } ?>
 	                <!-- /.item -->
 	              </ul>
 

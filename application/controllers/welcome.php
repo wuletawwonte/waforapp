@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model(array('notice','comment', 'forum', 'user'));
+		$this->load->model(array('notice','comment', 'forum', 'user', 'answer'));
 
 
 	}
@@ -82,9 +82,45 @@ class Welcome extends CI_Controller {
 			$data = array('upload_data' => $this->upload->data());
 
 			$this->user->change_avatar($data['upload_data']['file_name']);
+			$this->session->set_userdata('avatar', $data['upload_data']['file_name']);
 			$this->session->set_flashdata('success', "Your Account Succesffulyy updated.");
 		}
 		redirect('welcome/profile');
+	}
+
+	public function ask_question_view() {
+		if($this->session->userdata('is_logged_in') != 'TRUE') {
+			redirect('welcome/index');
+		}		
+		$data['active_menu'] = "forums";
+		$data['latest_notices'] = $this->notice->get_few();		
+		$this->load->view('templates/header', $data);
+		$this->load->view('ask_question_view');
+		$this->load->view('templates/footer');								
+	}
+
+	public function post_question() {
+		if($this->forum->post_question()) {
+			$this->session->set_flashdata('success', "Success, Your question succesfuly posted.");
+		} else {
+			$this->session->set_flashdata('error', "Sorry, Unable to post your question.");
+		}
+		redirect('welcome/forums');
+	}
+
+	public function forum_details($fid) {
+		$data['active_menu'] = "forums";
+		$data['latest_notices'] = $this->notice->get_few();	
+		$data['forum'] = $this->forum->get_one($fid);
+		$data['answers'] = $this->answer->get_answers($fid);	
+		$this->load->view('templates/header', $data);
+		$this->load->view('forum_details', $data);
+		$this->load->view('templates/footer');								
+	}
+
+	public function answer_forum_question() {
+		$this->answer->post();
+		redirect('welcome/forum_details/'.$this->input->post('fid'));
 	}
 
 

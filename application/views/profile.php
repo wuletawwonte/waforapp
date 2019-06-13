@@ -12,7 +12,7 @@
               <h5 class="widget-user-desc"><?= $this->session->userdata('user_type'); ?></h5>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $this->session->userdata('avatar'); ?>" alt="User Avatar">
+              <img class="img-circle" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $this->session->userdata('avatar'); ?>" alt="User Avatar" style="height: 90px;">
             </div>
             <div class="box-footer">
               <div class="row">
@@ -43,12 +43,7 @@
 
 	<div class="col-md-7">
 
-  
-          <!-- Horizontal Form -->
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Edit your profile information</h3>
-            </div>
+
       <?php if($this->session->flashdata('success')) { ?>
           <div class="callout callout-info">
               <?php echo $this->session->flashdata('success'); ?>
@@ -59,18 +54,44 @@
           </div>
       <?php } ?>
 
+          <!-- Horizontal Form -->
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit your profile avatar</h3>
+            </div>
+
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="<?= base_url(); ?>welcome/update_profile" enctype="multipart/form-data">
               <div class="box-body">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Avatar</label>
 
-                  <div class="col-sm-9">
-                    <input type="file" class="form-control input-lg" name="userfile" accept="jpg|png">
-          					<span class="help-block">Upload your profile picture here...</span>                  
-        					</div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Avatar</label>
+                    <div class="input-group  col-sm-8">
+                      <input type="file" class="form-control" name="userfile" accept="jpg|png" required>
+                          <span class="input-group-btn">
+                            <button type="submit" class="btn btn-info btn-flat">Change</button>
+                          </span>
+                    </div>
+                    <!-- <span class="help-block">Upload your profile picture here...</span>                   -->
+
                 </div>
+
+              </div>
+              <!-- /.box-body -->
+            </form>
+          </div>
+          <!-- /.box -->
+
+
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">Edit You Account Information</h3>
+
+          </div>
+
+          <div class="box-body">
+            <form class="form-horizontal" method="POST" action="<?= base_url(); ?>welcome/update_profile">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Username</label>
 
@@ -93,16 +114,15 @@
                     <input type="password" class="form-control" name="new_password" placeholder="New Password">
                   </div>
                 </div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <a type="button" href="<?= base_url(); ?>" class="btn btn-default">Cancel</a>
-                <button type="submit" class="btn btn-info pull-right">Save</button>
-              </div>
-              <!-- /.box-footer -->
-            </form>
+
           </div>
-          <!-- /.box -->
+          
+          <div class="box-footer">
+            <a type="button" href="<?= base_url(); ?>" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-info pull-right">Save</button>
+          </div>
+
+          </form>
         </div>
 
 
