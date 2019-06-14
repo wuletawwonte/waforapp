@@ -62,7 +62,8 @@
                   <td><?= $student['year']; ?></td>
                   <td>
                     <a href="<?= base_url(); ?>admin/edit_student_view/<?= $student['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                    <a href="" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                    <a href="" class="btn btn-xs btn-warning"><i class="fa fa-key"></i></a>
+                    <a href="" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>        
 

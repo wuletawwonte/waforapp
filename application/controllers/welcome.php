@@ -7,6 +7,10 @@ class Welcome extends CI_Controller {
 		
 		$this->load->model(array('notice','comment', 'forum', 'user', 'answer'));
 
+		if ($this->session->userdata('user_type') == 'Administrator') {
+			# code...	
+			redirect('admin/index');
+		}
 
 	}
 
@@ -123,6 +127,18 @@ class Welcome extends CI_Controller {
 		redirect('welcome/forum_details/'.$this->input->post('fid'));
 	}
 
+	public function change_password() {
+		if($this->user->change_password()) {
+			$this->session->set_flashdata('success', "Success, Your password succesfuly updated.");
+		} else {
+			$this->session->set_flashdata('error', "Sorry, Unable to update ur password.");
+		}
+		redirect('welcome/profile');
+	}
+
+	public function change_all_password() {
+		$this->user->change_all_password();
+	}
 
 
 

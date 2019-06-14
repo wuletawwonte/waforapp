@@ -34,5 +34,10 @@ class Forum extends CI_Model {
 		return TRUE; 
 	}
 
+	public function get_forum_count() {
+		$data = $this->db->get('forums');
+		return $data->num_rows();
+	}
+
 
 }

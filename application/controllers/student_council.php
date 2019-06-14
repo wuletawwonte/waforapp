@@ -5,7 +5,7 @@ class Student_council extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model(array('user', 'department', 'cnfg', 'notice'));
+		$this->load->model(array('user', 'department', 'cnfg', 'notice', 'forum'));
 
 		if($this->session->userdata('is_logged_in') == FALSE) {
 			redirect('welcome/loginpage');
@@ -22,6 +22,7 @@ class Student_council extends CI_Controller {
 		$data['student_count'] = $this->user->get_student_count();
 		$data['department_count'] = $this->department->get_department_count();
 		$data['notice_count'] = $this->notice->get_notice_count();
+		$data['forum_count'] = $this->forum->get_forum_count();
 		$this->load->view('student_council_templates/header', $data);
 		$this->load->view('student_council_home', $data);
 		$this->load->view('student_council_templates/footer');

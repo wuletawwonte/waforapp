@@ -66,7 +66,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Forums</span>
-              <span class="info-box-number">760</span>
+              <span class="info-box-number"><?= $forum_count; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>

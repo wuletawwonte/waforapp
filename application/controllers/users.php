@@ -14,15 +14,14 @@ class Users extends CI_Controller {
 		$this->form_validation->set_rules('password', 'password', 'required|trim');
 
 		if($this->form_validation->run()){
-			$userdata = $this->user->get_user('username', $this->input->post('username'));
+			$userdata = $this->user->get_logged_in_user('username', $this->input->post('username'));
 			$data = array(
 				'name' => $userdata['first_name'].' '.$userdata['middle_name'],
 				'username' => $this->input->post('username'),
 				'is_logged_in' => TRUE,
 				'user_type' => $userdata['user_type'],
 				'user_id' => $userdata['id'],
-				'avatar' => $userdata['avatar'],
-				'department' => $userdata['name']
+				'avatar' => $userdata['avatar']
 				);
 
 			$this->session->set_userdata($data);
@@ -30,8 +29,10 @@ class Users extends CI_Controller {
 			if($this->session->userdata('user_type') === "Administrator") {
 				redirect('admin/index');
 			} else if($this->session->userdata('user_type') === "Student council") {
+				$this->session->set_userdata('department', $userdata['name']);
 				redirect('student_council/index');
 			} else if($this->session->userdata('user_type') === "Student") {
+				$this->session->set_userdata('department', $userdata['name']);
 				redirect('welcome/index');
 			} else {
 				$this->session->unset_userdata('is_logged_id');

@@ -62,7 +62,7 @@
 
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?= base_url(); ?>welcome/update_profile" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" id="avatar_form" action="<?= base_url(); ?>welcome/update_profile" enctype="multipart/form-data">
               <div class="box-body">
 
                 <div class="form-group">
@@ -70,7 +70,7 @@
                     <div class="input-group  col-sm-8">
                       <input type="file" class="form-control" name="userfile" accept="jpg|png" required>
                           <span class="input-group-btn">
-                            <button type="submit" class="btn btn-info btn-flat">Change</button>
+                            <button type="submit" form="avatar_form" class="btn btn-info btn-flat">Change</button>
                           </span>
                     </div>
                     <!-- <span class="help-block">Upload your profile picture here...</span>                   -->
@@ -86,12 +86,12 @@
 
         <div class="box">
           <div class="box-header with-border">
-            <h3 class="box-title">Edit You Account Information</h3>
+            <h3 class="box-title">Edit Your Account Information</h3>
 
           </div>
 
           <div class="box-body">
-            <form class="form-horizontal" method="POST" action="<?= base_url(); ?>welcome/update_profile">
+            <form class="form-horizontal" id="profile_information" name="profile_information" method="POST" action="<?= base_url(); ?>welcome/change_password">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Username</label>
 
@@ -119,7 +119,7 @@
           
           <div class="box-footer">
             <a type="button" href="<?= base_url(); ?>" class="btn btn-default">Cancel</a>
-            <button type="submit" class="btn btn-info pull-right">Save</button>
+            <button type="submit" form="profile_information" class="btn btn-info pull-right">Save</button>
           </div>
 
           </form>

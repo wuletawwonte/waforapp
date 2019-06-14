@@ -26,6 +26,13 @@ class User extends CI_Model {
 		}
 	}
 
+	public function get_logged_in_user($attrib, $username) {
+		$this->db->where($attrib, $username);
+		$res = $this->db->get('users');
+		$res = $res->result_array();
+		return $res[0];
+	}
+
 	public function get_user($attrib, $username) {
 		$this->db->where($attrib, $username);
 		$this->db->from('users');
@@ -143,6 +150,25 @@ class User extends CI_Model {
 			'avatar' => $avatar 
 			);
 		$this->db->where('id', $this->session->userdata('user_id'));
+		$this->db->update('users', $data);
+	}
+
+	public function change_password() {
+		$data = array(
+			'password' => md5($this->input->post('new_password'))
+			);
+		if($this->user_can_log_in($this->session->userdata('username'), $this->input->post('current_password'))) {
+			$this->db->update('users', $data);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function change_all_password() {
+		$data = array(
+			'password' =>  md5('123456')
+			);
 		$this->db->update('users', $data);
 	}
 

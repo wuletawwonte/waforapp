@@ -98,16 +98,17 @@
 			              <!-- /.box-comment -->
 			            </div>
 			            <?php if($this->session->userdata('is_logged_in') == "FALSE") { ?>
-			            <div class="box-footer" style="">
-			              <form action="<?= base_url(); ?>welcome/answer_forum_question" method="post">
-			              	<input type="text" name="fid" value="<?= $forum['fid']; ?>" hidden>
-			                <div class="img-push">
-				                <textarea class="form-control" name="answer_content" rows="3" required placeholder="Enter ..."></textarea>
-				                <button type="submit" class="btn btn-primary">post</button>
-  			                </div>
-			              </form>
-			            </div>					
-			            <?php } ?>
+			            <div class="box-footer">
+                          <form action="<?= base_url(); ?>welcome/answer_forum_question" method="post">
+                          	<input type="text" name="fid" value="<?= $forum['fid']; ?>" hidden>
+                            <img class="img-responsive img-circle img-sm" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $this->session->userdata('avatar'); ?>" alt="Alt Text">
+                            <!-- .img-push is used to add margin to elements next to floating images -->
+                            <div class="img-push">
+                              <input type="text" class="form-control input-sm" name="answer_content" placeholder="Press enter to post comment">
+                            </div>
+                          </form>
+                        </div>			            
+                        <?php } ?>
 					</div>
 				</div>
 			</div>
@@ -123,3 +124,8 @@
 
 
 
+<script type="text/javascript">
+	
+
+
+</script>

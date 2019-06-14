@@ -76,8 +76,8 @@
 	                    <a href=""> <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image"></a>
  					  </div>
 	                  <div class="product-info">
-	                    <a href="<?= base_url(); ?>welcome/forum_details/<?= $forum['fid']; ?>" class="product-title"><?= $forum['forum_question']; ?>
-	                      <span class="label label-warning pull-right">$1800</span></a>
+	                    <a href="<?= base_url(); ?>welcome/forum_details/<?= $forum['fid']; ?>" class="product-title"><?= $forum['forum_question']; ?></a>
+	                      <span class="label label-info pull-right">$1800</span>
 	                    <span class="product-description">
 	                          Samsung 32" 1080p 60Hz LED Smart HDTV.
 	                        </span>

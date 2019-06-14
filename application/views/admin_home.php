@@ -49,7 +49,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Notices</span>
-              <span class="info-box-number">41,410</span>
+              <span class="info-box-number"><?= $notice_count; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -66,7 +66,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Forums</span>
-              <span class="info-box-number">760</span>
+              <span class="info-box-number"><?= $forum_count;?></span>
             </div>
             <!-- /.info-box-content -->
           </div>

@@ -5,10 +5,10 @@ class Admin extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model(array('user', 'department', 'cnfg'));
+		$this->load->model(array('user', 'department', 'cnfg', 'notice', 'forum'));
 
 
-		if($this->session->userdata('is_logged_in') == FALSE) {
+		if($this->session->userdata('is_logged_in') != TRUE) {
 			redirect('welcome/loginpage');
 		} else if($this->session->userdata('user_type') == 'Student council') {
 			redirect('student_council/index');
@@ -22,6 +22,8 @@ class Admin extends CI_Controller {
 		$data['active_menu'] = 'dashboard';
 		$data['student_count'] = $this->user->get_student_count();
 		$data['department_count'] = $this->department->get_department_count();
+		$data['notice_count'] = $this->notice->get_notice_count();
+		$data['forum_count'] = $this->forum->get_forum_count();
 		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_home');
 		$this->load->view('admin_templates/footer');
