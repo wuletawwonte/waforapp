@@ -64,7 +64,7 @@
 	                  <td><?= $notice['date_posted']; ?></td>
 	                  <td>
 	                    <a href="<?= base_url(); ?>student_council/edit_notice_view/<?= $notice['nid']; ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-	                    <a href="" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+	                    <a href="<?= base_url(); ?>student_council/delete_notice/<?= $notice['nid']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
 				      </td>
 	                </tr>
 	                <?php } ?>

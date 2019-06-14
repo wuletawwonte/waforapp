@@ -71,5 +71,14 @@ class Student_council extends CI_Controller {
 		redirect('student_council/notices');
 	}
 
+	public function delete_notice($nid) {
+		if($this->notice->delete($nid)) {
+			$this->session->set_flashdata('success', 'Success, Notice successfully Deleted.');
+		} else {
+			$this->session->set_flashdata('error', 'Error, Unable to Delete the notice.');
+		}
+		redirect('student_council/notices');
+	}
+
 
 }

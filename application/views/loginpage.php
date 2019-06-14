@@ -42,13 +42,6 @@
       <button type="submit" class="btn btn-warning btn-block btn-flat">Sign In</button>
 
 
-      <div class="social-auth-links text-center">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-      </div>
-
-
     </form>
     <br>
     <a href="<?= base_url(); ?>" class="text-center">Back to Home</a>

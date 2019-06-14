@@ -152,7 +152,21 @@ class Admin extends CI_Controller {
 		redirect('admin/student_councils');
 	}
 
+	public function profile() {
+		$data['active_menu'] = '';
+		$this->load->view('admin_templates/header', $data);
+		$this->load->view('admin_profile');
+		$this->load->view('admin_templates/footer');								
+	}
 
+	public function change_password() {
+		if($this->user->change_password()) {
+			$this->session->set_flashdata('success', "Success, Your password succesfuly updated.");
+		} else {
+			$this->session->set_flashdata('error', "Sorry, Unable to update ur password.");
+		}
+		redirect('admin/profile');
+	}
 
 
 

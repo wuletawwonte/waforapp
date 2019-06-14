@@ -1,13 +1,20 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
 
-<section class="content">
+    <!-- Main content -->
+    <br><section class="content">
 
-  	<div class="row">
+
+      <div class="row">
+
+
+
 
 		<div class="col-md-3 col-md-offset-1" >
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-aqua-active" style="background: url('../assets/img/photo6.jpg') center center;">
+            <div class="widget-user-header bg-aqua-active" style="background: url('../assets/img/photo1.jpg') center center;">
               <h3 class="widget-user-username"><?= $this->session->userdata('name'); ?></h3>
               <h5 class="widget-user-desc"><?= $this->session->userdata('user_type'); ?></h5>
             </div>
@@ -21,11 +28,6 @@
               </div>
               <!-- /.row -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Department</strong>
-
-              <p class="text-muted">
-                Studying B.Sc in <?= $this->session->userdata('department'); ?> at Wachamo University.
-              </p>
 
               <hr>
 
@@ -66,7 +68,7 @@
               <div class="box-body">
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Profile Picture</label>
+                    <label class="col-sm-3 control-label">Avatar</label>
                     <div class="input-group  col-sm-8">
                       <input type="file" class="form-control" name="userfile" accept="jpg|png" required>
                           <span class="input-group-btn">
@@ -91,7 +93,7 @@
           </div>
 
           <div class="box-body">
-            <form class="form-horizontal" id="profile_information" name="profile_information" method="POST" action="<?= base_url(); ?>welcome/change_password">
+            <form class="form-horizontal" id="profile_information" name="profile_information" method="POST" action="<?= base_url(); ?>admin/change_password">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Username</label>
 
@@ -118,7 +120,7 @@
           </div>
           
           <div class="box-footer">
-            <a type="button" href="<?= base_url(); ?>" class="btn btn-default">Cancel</a>
+            <a type="button" href="<?= base_url(); ?>admin/index" class="btn btn-default">Cancel</a>
             <button type="submit" form="profile_information" class="btn btn-info pull-right">Save</button>
           </div>
 
@@ -126,5 +128,11 @@
         </div>
 
 
-    </div>
-</section>
+
+
+
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

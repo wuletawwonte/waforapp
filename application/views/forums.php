@@ -77,9 +77,9 @@
  					  </div>
 	                  <div class="product-info">
 	                    <a href="<?= base_url(); ?>welcome/forum_details/<?= $forum['fid']; ?>" class="product-title"><?= $forum['forum_question']; ?></a>
-	                      <span class="label label-info pull-right">$1800</span>
+	                      <span class=" pull-right"><?= $forum['date_asked'];?></span>
 	                    <span class="product-description">
-	                          Samsung 32" 1080p 60Hz LED Smart HDTV.
+	                    	<?= $forum['first_name']." ".$forum['middle_name']; ?>
 	                        </span>
 	                  </div>
 	                </li>

@@ -105,6 +105,7 @@
                             <!-- .img-push is used to add margin to elements next to floating images -->
                             <div class="img-push">
                               <input type="text" class="form-control input-sm" name="answer_content" placeholder="Press enter to post comment">
+                              <button type="submit" class="btn btn-primary">Answer</button>
                             </div>
                           </form>
                         </div>			            

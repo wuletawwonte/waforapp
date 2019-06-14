@@ -75,8 +75,6 @@ class Welcome extends CI_Controller {
 		$config['upload_path'] = './assets/img/profile_pictures/';
 		$config['allowed_types'] = 'jpg|png';
 		$config['max_size']	= '200';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
 
 		$this->load->library('upload', $config);
 

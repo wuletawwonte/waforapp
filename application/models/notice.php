@@ -68,6 +68,14 @@ class Notice extends CI_Model {
 		return true;
 	}
 
+	public function delete($nid) {
+		$this->db->where('nid', $nid);
+		$this->db->delete('notices');
+		$this->db->where('notice_id', $nid);
+		$this->db->delete('comments');
+		return true;
+	}
+
 
 
 

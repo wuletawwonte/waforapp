@@ -158,6 +158,7 @@ class User extends CI_Model {
 			'password' => md5($this->input->post('new_password'))
 			);
 		if($this->user_can_log_in($this->session->userdata('username'), $this->input->post('current_password'))) {
+			$this->db->where('id', $this->session->userdata('user_id'));
 			$this->db->update('users', $data);
 			return true;
 		} else {

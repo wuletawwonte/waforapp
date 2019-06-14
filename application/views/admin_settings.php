@@ -57,10 +57,6 @@
 		                        <td><input type="number" name="default_password" value="<?= $student_council_amount; ?>" min="1" max="50" class="form-control"></td>
 		                    </tr>
 		                    <tr>
-		                        <td>Admin:</td>
-		                        <td><input type="checkbox" name="Admin" value="1">&nbsp;<span class="SmallText">(Grants all privileges.)</span></td>
-		                    </tr>
-		                    <tr>
 		                        <td colspan="2" align="center">
 		                            <input type="submit" class="btn btn-primary" value="Save" name="save">&nbsp;
 		                            <input type="button" class="btn" name="Cancel" value="Cancel">
