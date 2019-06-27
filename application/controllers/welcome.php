@@ -18,6 +18,7 @@ class Welcome extends CI_Controller {
 	{
 		$data['active_menu'] = "notices";		
 		$data['notices'] = $this->notice->get_all();
+		$data['forums'] = $this->forum->get_few();
 		$this->load->view('templates/header', $data);
 		$this->load->view('homepage', $data);
 		$this->load->view('templates/footer');

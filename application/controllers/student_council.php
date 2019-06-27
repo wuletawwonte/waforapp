@@ -80,5 +80,16 @@ class Student_council extends CI_Controller {
 		redirect('student_council/notices');
 	}
 
+	public function settings() {
+		$data['active_menu'] = 'settings';
+		$data['candidate_approval_date'] = 'settings';
+		$data['candidate_selection_date'] = 'settings';
+		$data['student_council_amount'] = 'settings';
+
+		$this->load->view('student_council_templates/header', $data);
+		$this->load->view('student_council_settings');
+		$this->load->view('student_council_templates/footer');		
+	}
+
 
 }

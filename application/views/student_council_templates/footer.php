@@ -12,7 +12,6 @@
 
 	<script src="<?= base_url(); ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
   <script src="<?= base_url(); ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
-	<!-- <script src="<?= base_url(); ?>assets/bower_components/select2/dist/js/select2.min.js"></script> -->
 	<script src="<?= base_url(); ?>assets/js/dist/adminlte.min.js"></script>
 
 

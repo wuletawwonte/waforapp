@@ -39,5 +39,14 @@ class Forum extends CI_Model {
 		return $data->num_rows();
 	}
 
+	public function get_few() {
+		$this->db->order_by('fid', 'DESC');
+		$this->db->limit('5');
+		$this->db->from('forums');
+		$this->db->join('users', 'users.id = forums.user_id');
+		$data = $this->db->get();
+		return $data->result_array();
+	}
+
 
 }

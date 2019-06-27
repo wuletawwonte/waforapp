@@ -211,7 +211,7 @@
         </li>
 
         <li <?php if($active_menu == 'settings') echo "class='active'" ?>>
-          <a href="<?= base_url(); ?>admin/settings">
+          <a href="<?= base_url(); ?>student_council/settings">
             <i class="fa fa-gears"></i> <span>Settings</span>
           </a>
         </li>

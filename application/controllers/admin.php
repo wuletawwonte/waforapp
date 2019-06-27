@@ -169,6 +169,25 @@ class Admin extends CI_Controller {
 	}
 
 
+	public function update_profile() {
+		$config['upload_path'] = './assets/img/profile_pictures/';
+		$config['allowed_types'] = 'jpg|png';
+		$config['max_size']	= '200';
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload()) {
+			$this->session->set_flashdata('error', $this->upload->display_errors());
+		} else {
+			$data = array('upload_data' => $this->upload->data());
+
+			$this->user->change_avatar($data['upload_data']['file_name']);
+			$this->session->set_userdata('avatar', $data['upload_data']['file_name']);
+			$this->session->set_flashdata('success', "Your Account Succesffulyy updated.");
+		}
+		redirect('admin/profile');
+	}
+
 
 
 }

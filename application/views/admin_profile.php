@@ -64,7 +64,7 @@
 
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" id="avatar_form" action="<?= base_url(); ?>welcome/update_profile" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" id="avatar_form" action="<?= base_url(); ?>admin/update_profile" enctype="multipart/form-data">
               <div class="box-body">
 
                 <div class="form-group">
