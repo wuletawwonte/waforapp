@@ -1,3 +1,8 @@
+<script type="text/javascript" src="<?= base_url('assets/plugins/jquery.inputmask.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/jquery.inputmask.date.extensions.js'); ?>"></script>
+
+
+
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -19,57 +24,112 @@
 		<div class="box">
 		    <div class="box-body">
 
-		        <div class="callout callout-info">
-		            Note: Student related settings reside here.
+      <?php if($this->session->flashdata('success')) { ?>
+          <div class="callout callout-info">
+              <?php echo $this->session->flashdata('success'); ?>
+          </div>
+      <?php } else if($this->session->flashdata('error')) { ?>
+          <div class="callout callout-error">
+              <?php echo $this->session->flashdata('error'); ?>
+          </div>
+      <?php } ?>
+
+
+		        <div class="callout">
+		            Today: <?= date('Y-m-d');?>
 		        </div>
 
 
-		        <form method="post" action="">
 		            <div class="table-responsive">
 		                <table class="table table-hover">
 
-		                    <tbody><tr>
-		                        <td>Candidate Selection Date:</td>
-		                        <td><input type="text" name="candidate_selection_date" value="<?= $candidate_selection_date; ?>" class="form-control" width="32"></td>
+			                <thead>
+								<tr>
+									<th>Setting</th>
+									<th>Value</th>
+									<th>Current Value</th>
+								</tr>			                	
+			                </thead>
+		                    <tbody>
+
+		                    <tr>
+		                        <td>Candidate Selection Start Date:</td>
+		                        <td>
+		                        	<form method="post" action="<?= base_url(); ?>student_council/save_setting">
+				                        <input type="text" name="name" value="candidate_selection_start_date" hidden>
+				                        <div class="input-group input-group-md">
+							                <input type="text" class="inputmasked form-control" data-inputmask="'alias': 'yyyy-mm-dd'" name="value" value="<?= date('Y'); ?>" data-mask>
+							                    <span class="input-group-btn">
+							                      <button type="submit" class="btn btn-info btn-flat">Save!</button>
+							                    </span>
+							            </div>
+						            </form>
+					            </td>
+		                        <td><?= $election_date['candidate_selection_start_date'];?> </td>
 		                    </tr>
 
 		                    <tr>
-		                        <td>Candidate Approval Date:</td>
-		                        <td><input type="text" name="candidate_approval_date" value="<?= $candidate_approval_date; ?>" class="form-control" width="5"></td>
+		                        <td>Candidate Selection End Date:</td>
+		                        <td>
+		                        	<form method="post" action="<?= base_url(); ?>student_council/save_setting">		                        
+				                        <input type="text" name="name" value="candidate_selection_end_date" hidden>
+				                        <div class="input-group input-group-md">
+							                <input type="text" class="inputmasked form-control" data-inputmask="'alias': 'yyyy-mm-dd'" name="value" value="<?= date('Y'); ?>" data-mask>
+							                    <span class="input-group-btn">
+							                      <button type="submit" class="btn btn-info btn-flat">Save!</button>
+							                    </span>
+							            </div>
+							        </form>
+		                        </td>
+		                        <td><?= $election_date['candidate_selection_end_date'];?> </td>
 		                    </tr>
-
+		                    
 		                    <tr>
 		                        <td>Candidate Advertisement Start Date:</td>
-		                        <td><input type="text" name="candidate_approval_date" value="<?= $candidate_approval_date; ?>" class="form-control" width="5"></td>
-		                    </tr>
-
-		                    <tr>
-		                        <td>Candidate Advertisement End Date:</td>
-		                        <td><input type="text" name="candidate_approval_date" value="<?= $candidate_approval_date; ?>" class="form-control" width="5"></td>
+		                        <td>
+		                        	<form method="post" action="<?= base_url(); ?>student_council/save_setting">	
+				                        <input type="text" name="name" value="candidate_advertisement_start_date" hidden>		                        		                        
+				                        <div class="input-group input-group-md">
+							                <input type="text" class="inputmasked form-control" data-inputmask="'alias': 'yyyy-mm-dd'" name="value" value="<?= date('Y'); ?>" data-mask>
+							                    <span class="input-group-btn">
+							                      <button type="submit" class="btn btn-info btn-flat">Save!</button>
+							                    </span>
+							            </div>
+							        </form>    
+		                        </td>
+		                        <td><?= $election_date['candidate_advertisement_start_date'];?> </td>
 		                    </tr>
 
 		                    <tr>
 		                        <td>Election Start Date:</td>
-		                        <td><input type="text" name="candidate_approval_date" value="<?= $candidate_approval_date; ?>" class="form-control" width="5"></td>
+		                        <td>
+		                        	<form method="post" action="<?= base_url(); ?>student_council/save_setting">
+				                        <input type="text" name="name" value="election_start_date" hidden>		                        		                        
+				                        <div class="input-group input-group-md">
+							                <input type="text" class="inputmasked form-control" data-inputmask="'alias': 'yyyy-mm-dd'" name="value" value="<?= date('Y'); ?>" data-mask>
+							                    <span class="input-group-btn">
+							                      <button type="submit" class="btn btn-info btn-flat">Save!</button>
+							                    </span>
+							            </div>
+							        </form>
+		                        </td>
+		                        <td><?= $election_date['election_start_date'];?> </td>		                        		                              
 		                    </tr>
 
 		                    <tr>
 		                        <td>Election End Date:</td>
-		                        <td><input type="text" name="candidate_approval_date" value="<?= $candidate_approval_date; ?>" class="form-control" width="5"></td>
-		                    </tr>
-
-		                    <tr>
-		                        <td>Language:</td>
-		                    	<td><select name="language" size="3" class="form-control" disabled>
-					                    <option selected="" value="english">english</option>
-					                    <option value="amharic">amharic</option>
-					                </select>
-					            </td>
-		                    </tr>
-
-		                    <tr>
-		                        <td>Maximum Student Council Candidates :</td>
-		                        <td><input type="number" name="default_password" value="<?= $student_council_amount; ?>" min="1" max="50" class="form-control"></td>
+		                        <td>
+		                        	<form method="post" action="<?= base_url(); ?>student_council/save_setting">		                        
+				                        <input type="text" name="name" value="election_end_date" hidden>		                        		                        
+				                        <div class="input-group input-group-md">
+							                <input type="text" class="inputmasked form-control" data-inputmask="'alias': 'yyyy-mm-dd'" name="value" value="<?= date('Y'); ?>" data-mask>
+							                    <span class="input-group-btn">
+							                      <button type="submit" class="btn btn-info btn-flat">Save!</button>
+							                    </span>
+							            </div>
+							        </form>
+		                        </td>		                              
+		                        <td><?= $election_date['election_end_date'];?> </td>		                        		                              
 		                    </tr>
 
 		                </tbody></table>
@@ -85,5 +145,8 @@
   </div>
   <!-- /.content-wrapper -->
 
-
-
+<script type="text/javascript">
+$(function() {
+	$(".inputmasked").inputmask(); 
+});
+</script>

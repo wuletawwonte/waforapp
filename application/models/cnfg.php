@@ -7,11 +7,17 @@ class Cnfg extends CI_Model {
 		parent::__construct();
 	}
 
-	public function get($name) {
-		$this->db->where('name', $name);
+	public function save_election_date_setting() {
+		$data = array(
+			$this->input->post('name') => $this->input->post('value')
+			);
+		$this->db->update('cnfg', $data);
+		return true;
+	}
+
+	public function get() {
 		$data = $this->db->get('cnfg');
-		$data = $data->result_array();
-		return $data[0]['value'];
+		return $data->result_array()[0];
 	}
 
 

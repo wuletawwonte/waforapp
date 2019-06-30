@@ -66,7 +66,8 @@ class User extends CI_Model {
 			'email' => $this->input->post('email'),
 			'sex' => $this->input->post('sex'),
 			'department' => $this->input->post('department'),
-			'year' => $this->input->post('year')
+			'year' => $this->input->post('year'),
+			'cgpa' => $this->input->post('cgpa')
 			);
 		$this->db->insert('users', $data);
 		return true;
@@ -94,7 +95,8 @@ class User extends CI_Model {
 			'email' => $this->input->post('email'), 
 			'sex' => $this->input->post('sex'), 
 			'department' => $this->input->post('department'),
-			'year' => $this->input->post('year')
+			'year' => $this->input->post('year'),
+			'cgpa' => $this->input->post('cgpa')
 			);
 
 		$this->db->where('id', $id);

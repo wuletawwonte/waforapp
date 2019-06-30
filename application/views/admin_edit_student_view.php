@@ -85,6 +85,11 @@
                   <input type="number" class="form-control" name="year" max="7" min="1" required value="<?= $student['year']; ?>">
                 </div>
 
+                <div class="form-group col-md-2">
+                  <label for="cgpa">CGPA</label>
+                  <input type="number" class="form-control" name="cgpa" max="4" min="1" required value="<?= $student['cgpa']; ?>">
+                </div>
+
             </div>
             <!-- /.row -->
           </div>
