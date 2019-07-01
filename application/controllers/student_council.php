@@ -5,7 +5,7 @@ class Student_council extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model(array('user', 'department', 'cnfg', 'notice', 'forum'));
+		$this->load->model(array('user', 'department', 'cnfg', 'notice', 'forum', 'pre_candidate', 'candidate', 'advertisement'));
 
 		if($this->session->userdata('is_logged_in') == FALSE) {
 			redirect('welcome/loginpage');
@@ -126,6 +126,44 @@ class Student_council extends CI_Controller {
 			$this->session->set_flashdata('error', 'Error, Unable to save setting, Check the value.');
 		}
 		redirect('student_council/settings');
+	}
+
+	public function election() {
+		$data['active_menu'] = 'election';
+		$data['election'] = $this->cnfg->get(); 
+		$data['pre_candidates'] = $this->pre_candidate->get_all();
+		$data['candidates'] = $this->candidate->get_all();
+		$this->load->view('student_council_templates/header', $data);
+		$this->load->view('student_council_election', $data);
+		$this->load->view('student_council_templates/footer');				
+	}
+
+
+	public function add_candidate() {
+		$res = $this->cnfg->get_by('student_council_candidate_amount');		
+		if($this->candidate->candidates_count() < $res['student_council_candidate_amount']) {
+			if($this->candidate->check_candidate()) {
+				if($this->candidate->add_candidate()) {
+					$this->session->set_flashdata('success', 'Success, Cadidate Successfully Added.');
+				} else {
+					$this->session->set_flashdata('error', 'Error, Unable to user to Student Council Candidates list.');
+				}
+			} else {
+					$this->session->set_flashdata('error', 'Error, User allready a Candidate.');
+			}
+		} else {
+			$this->session->set_flashdata('error', "Sorry, Student Council Candidate Reached Maximum count.");					
+		}
+		redirect('student_council/election');
+	}
+
+	public function remove_candidate($cid) {
+		if($this->candidate->remove_candidate($cid)) {
+			$this->session->set_flashdata('success', 'Success, Cadidate Successfully Removed.');
+		} else {
+			$this->session->set_flashdata('error', 'Error, Unable to user to Remove student Council Candidates.');
+		}		
+		redirect('student_council/election');
 	}
 
 

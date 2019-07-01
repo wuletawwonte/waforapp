@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model(array('notice','comment', 'forum', 'user', 'answer', 'cnfg', 'pre_candidate'));
+		$this->load->model(array('notice','comment', 'forum', 'user', 'answer', 'cnfg', 'pre_candidate', 'advertisement', 'candidate'));
 
 		if ($this->session->userdata('user_type') == 'Administrator') {
 			redirect('admin/index');
@@ -171,9 +171,41 @@ class Welcome extends CI_Controller {
 	}
 
 	public function election() {
+
+
+		$config = array(
+				'base_url' => base_url('welcome/election'), 
+				'per_page' => 4,
+				'uri_segment'=> 3,
+				'full_tag_open' => "<ul class='pagination pagination-sm'>",
+				'full_tag_close' => "</ul>",
+				'num_tag_open' => '<li>',
+				'num_tag_close' => '</li>',
+				'cur_tag_open' => "<li class='disabled'><li class='active'><a href='#'>",
+				'cur_tag_close' => "<span class='sr-only'></span></a></li>",
+				'next_tag_open' => "<li>",
+				'next_tagl_close' => "</li>",
+				'prev_tag_open' => "<li>",
+				'prev_tagl_close' => "</li>",
+				'first_tag_open' => "<li>",
+				'first_tagl_close' => "</li>",
+				'last_tag_open' => "<li>",
+				'last_tagl_close' => "</li>"
+
+			);
+
+
+		$config['total_rows'] = $this->advertisement->get_advertisement_count();
+		$this->pagination->initialize($config);
+		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$data['links'] = $this->pagination->create_links();
+		$data['advertisements'] = $this->advertisement->get_all($config['per_page'], $page);
+
 		$data['active_menu'] = "election";	
 		$data['latest_notices'] = $this->notice->get_few();	
 		$data['election'] = $this->cnfg->get(); 
+		$data['is_candidate'] = $this->candidate->is_candidate();
+		$data['candidates'] = $this->candidate->get_all();
 		$this->load->view('templates/header', $data);
 		$this->load->view('election', $data);
 		$this->load->view('templates/footer');										
@@ -195,6 +227,16 @@ class Welcome extends CI_Controller {
 			$this->session->set_flashdata('success', "Success, Your request has been canceled.");						
 		} else {
 			$this->session->set_flashdata('error', "User is not student council candidate.");
+		}
+		redirect('welcome/election');
+
+	}
+
+	public function post_advertisement() {
+		if($this->advertisement->add()){
+			$this->session->set_flashdata('success', "Success, Your Advertisement Succesffulyy posted.");
+		} else {
+			$this->session->set_flashdata('error', "Unable to post the advertisement.");
 		}
 		redirect('welcome/election');
 

@@ -63,7 +63,7 @@
 				          <p>Election Process not started yet. The Election candidate selection date is at <?= $election['candidate_selection_start_date']; ?></p>
 				        </div> 
 
-	          		<?php } else if(date('Y-m-d') > $election['candidate_selection_start_date'] && date('y-m-d') < $election['candidate_selection_end_date']) { ?>           		
+	          		<?php } else if(date('Y-m-d') > $election['candidate_selection_start_date'] && date('Y-m-d') < $election['candidate_selection_end_date']) { ?>           		
 						<div class="col-md-12" >
 				          <!-- Widget: user widget style 1 -->
 				          <div class="box box-widget widget-user">
@@ -95,7 +95,61 @@
 				          </div>
 				          <!-- /.widget-user -->
 				        </div>
-	           		<?php } else if(date('Y-m-d') > $election['candidate_selection_start_date'] && date('y-m-d') < $election['candidate_selection_end_date']) { }   ?>
+
+	          		<?php } else if(date('Y-m-d') > $election['candidate_selection_end_date'] && date('Y-m-d') < $election['candidate_advertisement_start_date']) { ?>  
+
+	          			<div class="callout">
+				          <h4>Election!</h4>
+				          <p>Candidate Selection Period is over. The elected Candidates are gonna start advertising on <?= $election['candidate_advertisement_start_date']; ?></p>
+				        </div> 
+
+
+	           		<?php } else if(date('Y-m-d') > $election['candidate_advertisement_start_date'] && date('Y-m-d') < $election['election_start_date']) { ?>
+	           			<div class="box-body no-padding">		                  
+	           			  <ul class="users-list clearfix">
+		                  	<?php foreach($candidates as $cndt) { ?>
+		                    <li>
+		                      <img src="<?= base_url(); ?>assets/img/profile_pictures/<?= $cndt['avatar'];?>" alt="User Image">
+		                      <a class="users-list-name" href="#"><?= $cndt['first_name']." ".$cndt['middle_name']; ?></a>
+		                    </li>
+		                    <?php } ?>
+		                  </ul>
+		                  <!-- /.users-list -->
+		                </div><hr>
+
+	           			<?php if($is_candidate) {
+	           			?>
+
+
+							<form method="POST" action="<?= base_url(); ?>welcome/post_advertisement">
+
+								<div class="form-group">
+				                  <label>Advertisement</label>
+				                  <textarea class="form-control" name="ad_content" rows="3" placeholder="Enter ..."></textarea>
+				                </div>
+				                <button type="submit" class="btn btn-info">Post</button>
+
+			           		</form>	           			
+
+			           		<hr>
+				        <?php }  if(!$advertisements) { echo "No Advertisement posted yet."; } else { 
+				        	foreach($advertisements as $student) { ?>
+
+							<div class="post">
+			                  <div class="user-block">
+			                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $student['avatar'];?>" alt="user image">
+			                        <span class="username">
+			                          <a href="#"><?= $student['first_name'].' '.$student['middle_name']; ?></a>
+			                        </span>
+			                    <span class="description">Student Council Candidate - <?= $student['ad_date'];?> </span>
+			                  </div>
+			                  <p><?= $student['ad_content']; ?></p>
+			                </div>
+			                <?php } } ?>
+
+    		           	<div style="text-align: center;"><p><?= $links; ?></p></div>
+
+	           		<?php } ?>
            		</div>           		
            	</div>
 		</div>

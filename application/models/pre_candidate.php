@@ -29,6 +29,15 @@ class Pre_candidate extends CI_Model {
 		return true;		
 	}
 
+	public function get_all() {
+		$this->db->from('pre_candidates');
+		$this->db->join('users', 'users.id = pre_candidates.user_id');
+		$data = $this->db->get();
+		$data = $data->result_array();
+
+		return $data;
+	}
+
 
 
 

@@ -122,9 +122,16 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
+
         <li <?php if($active_menu == 'notices') echo "class='active'" ?>>
           <a href="<?= base_url('student_council/notices'); ?>">
             <i class="fa fa-bell"></i> <span>Notices</span>
+          </a>
+        </li>
+
+        <li <?php if($active_menu == 'election') echo "class='active'" ?>>
+          <a href="<?= base_url('student_council/election'); ?>">
+            <i class="fa fa-archive"></i> <span>Election</span>
           </a>
         </li>
 
