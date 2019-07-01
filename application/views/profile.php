@@ -24,7 +24,7 @@
               <strong><i class="fa fa-book margin-r-5"></i> Department</strong>
 
               <p class="text-muted">
-                Studying B.Sc in <?= $this->session->userdata('department'); ?> at Wachamo University.
+                Studying B.Sc <?= $this->session->userdata('department'); ?> at Wachamo University.
               </p>
 
               <hr>

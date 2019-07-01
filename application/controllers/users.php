@@ -24,6 +24,37 @@ class Users extends CI_Controller {
 				'avatar' => $userdata['avatar']
 				);
 
+			if(false) {
+				
+				$config = Array( 
+				'protocol' => 'smtp', 
+			  	'smtp_host' => 'ssl://smtp.googlemail.com', 
+			  	'smtp_port' => 465, 
+			  	'smtp_user' => 'waforapp@gmail.com', 
+			  	'smtp_pass' => 'blen.yosef', ); 
+
+				$this->load->library('encrypt');
+			  	$this->load->library('email', $config); 
+			  	$this->email->set_newline("\r\n");
+			  	$this->email->from('waforapp@gmail.com', 'Waforapp');
+			  	$this->email->to($userdata['email']);
+			  	$this->email->subject(' My mail through codeigniter from localhost '); 
+			  	$this->email->message('Hello World…');
+			  	if (!$this->email->send()) {
+			    	show_error($this->email->print_debugger()); }
+			  	else {
+			    	echo 'Your e-mail has been sent!';
+			  	}
+				
+				if (!$this->email->send()) {
+					$this->session->set_flashdata('error', $this->email->print_debugger());	
+					redirect('users/account_verification_view');
+				} else {
+					$this->session->set_flashdata('success', 'email successfully sent.');
+					redirect('users/account_verification_view');					
+				}
+			}
+
 			$this->session->set_userdata($data);
 			
 			if($this->session->userdata('user_type') === "Administrator") {
@@ -56,6 +87,10 @@ class Users extends CI_Controller {
 			return false;
 		}
 
+	}
+
+	public function account_verification_view() {
+		$this->load->view('account_verification');
 	}
 
 

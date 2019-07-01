@@ -53,6 +53,22 @@
 		                    <tbody>
 
 		                    <tr>
+		                        <td>Maximum Student Candidate Count:</td>
+		                        <td>
+		                        	<form method="post" action="<?= base_url(); ?>student_council/save_setting">
+				                        <input type="text" name="name" value="student_council_candidate_amount" hidden>
+				                        <div class="input-group input-group-md">
+							                <input type="number" class="form-control" min="<?= $election_date['student_council_amount'];?>" name="value" value="<?= $election_date['student_council_candidate_amount']; ?>">
+							                    <span class="input-group-btn">
+							                      <button type="submit" class="btn btn-info btn-flat">Save!</button>
+							                    </span>
+							            </div>
+						            </form>
+					            </td>
+		                        <td><?= $election_date['student_council_candidate_amount'];?> </td>
+		                    </tr>
+
+		                    <tr>
 		                        <td>Candidate Selection Start Date:</td>
 		                        <td>
 		                        	<form method="post" action="<?= base_url(); ?>student_council/save_setting">

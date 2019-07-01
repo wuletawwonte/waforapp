@@ -29,8 +29,39 @@ class Student_council extends CI_Controller {
 	}
 
 	public function notices() {
+		$config = array(
+				'base_url' => base_url('student_council/notices'), 
+				'per_page' => 4,
+				'uri_segment'=> 3,
+				'full_tag_open' => "<ul class='pagination pagination-sm'>",
+				'full_tag_close' => "</ul>",
+				'num_tag_open' => '<li>',
+				'num_tag_close' => '</li>',
+				'cur_tag_open' => "<li class='disabled'><li class='active'><a href='#'>",
+				'cur_tag_close' => "<span class='sr-only'></span></a></li>",
+				'next_tag_open' => "<li>",
+				'next_tagl_close' => "</li>",
+				'prev_tag_open' => "<li>",
+				'prev_tagl_close' => "</li>",
+				'first_tag_open' => "<li>",
+				'first_tagl_close' => "</li>",
+				'last_tag_open' => "<li>",
+				'last_tagl_close' => "</li>"
+
+			);
+
+
+		$config['total_rows'] = $this->notice->get_notice_count();
+
+		$this->pagination->initialize($config);
+
+		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+		$data['links'] = $this->pagination->create_links();
+		$data['notices'] = $this->notice->get_notices_for_pagination($config['per_page'], $page);
+
+
 		$data['active_menu'] = 'notices';
-		$data['notices'] = $this->notice->get_all();
 		$this->load->view('student_council_templates/header', $data);
 		$this->load->view('student_council_notices', $data);
 		$this->load->view('student_council_templates/footer');

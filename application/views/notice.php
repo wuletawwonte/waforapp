@@ -6,7 +6,7 @@
 		<div class="col-md-4 col-sm-4">
 			<div class="box">
 	            <div class="box-header with-border">
-	              <h3 class="box-title">Latest Forums</h3>
+	              <h3 class="box-title">Latest Notices</h3>
 
 	              <div class="box-tools pull-right">
 	                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -16,67 +16,29 @@
 	            <!-- /.box-header -->
 	            <div class="box-body">
 	              <ul class="products-list product-list-in-box">
+	                <?php foreach($latest_notices as $ntc) { ?>
 	                <li class="item">
 	                  <div class="product-img">
-	                    <img src="<?= base_url(); ?>assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
+	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $ntc['avatar']; ?>" alt="user image" >
 	                  </div>
 	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title">Samsung TV
-	                      <span class="label label-warning pull-right">$1800</span></a>
+	                    <a href="<?= base_url(); ?>welcome/notice/<?= $ntc['nid'];?>" class="product-title"><?= character_limiter($ntc['title'], 22); ?></a>
 	                    <span class="product-description">
-	                          Samsung 32" 1080p 60Hz LED Smart HDTV.
+	                          <?= $ntc['first_name']." ".$ntc['middle_name']; ?>
 	                        </span>
 	                  </div>
 	                </li>
-	                <!-- /.item -->
-	                <li class="item">
-	                  <div class="product-img">
-	                    <img src="<?= base_url(); ?>assets/img/default-50x50.gif" alt="Product Image">
-	                  </div>
-	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title">Bicycle
-	                      <span class="label label-info pull-right">$700</span></a>
-	                    <span class="product-description">
-	                          26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-	                        </span>
-	                  </div>
-	                </li>
-	                <!-- /.item -->
-	                <li class="item">
-	                  <div class="product-img">
-	                    <img src="<?= base_url(); ?>assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
-	                  </div>
-	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title">Xbox One <span class="label label-danger pull-right">$350</span></a>
-	                    <span class="product-description">
-	                          Xbox One Console Bundle with Halo Master Chief Collection.
-	                        </span>
-	                  </div>
-	                </li>
-	                <!-- /.item -->
-	                <li class="item">
-	                  <div class="product-img">
-	                    <img src="<?= base_url(); ?>assets/img/default-50x50.gif" alt="Product Image">
-	                  </div>
-	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title">PlayStation 4
-	                      <span class="label label-success pull-right">$399</span></a>
-	                    <span class="product-description">
-	                          PlayStation 4 500GB Console (PS4)
-	                        </span>
-	                  </div>
-	                </li>
-	                <!-- /.item -->
+	                <?php } ?>
+
 	              </ul>
 	            </div>
 	            <!-- /.box-body -->
 	            <div class="box-footer text-center">
-	              <a href="#" class="uppercase">View All Forums</a>
+	              <a href="<?= base_url(); ?>" class="uppercase">View All Notices</a>
 	            </div>
 	            <!-- /.box-footer -->
 	          </div>
           </div>
-
 
 
 

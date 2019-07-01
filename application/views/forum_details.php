@@ -7,7 +7,7 @@
 		<div class="col-md-4 col-sm-4">
 			<div class="box">
 	            <div class="box-header with-border">
-	              <h3 class="box-title">Latest Notices</h3>
+	              <h3 class="box-title">Latest Forums</h3>
 
 	              <div class="box-tools pull-right">
 	                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -17,26 +17,27 @@
 	            <!-- /.box-header -->
 	            <div class="box-body">
 	              <ul class="products-list product-list-in-box">
-	                <?php foreach($latest_notices as $notice) { ?>
+
+	              <?php foreach($forums as $frm) { ?>
 	                <li class="item">
 	                  <div class="product-img">
-	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $notice['avatar']; ?>" alt="user image" >
+	                    <img src="<?= base_url(); ?>assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
 	                  </div>
 	                  <div class="product-info">
-	                    <a href="<?= base_url(); ?>welcome/notice/<?= $notice['nid'];?>" class="product-title"><?= character_limiter($notice['title'], 22); ?>
-	                      <span class="label label-warning pull-right">$1800</span></a>
+	                    <a href="<?= base_url(); ?>welcome/forum_details/<?= $frm['fid']; ?>" class="product-title"><?= word_limiter($frm['forum_question'], 7); ?></a>
 	                    <span class="product-description">
-	                          <?= $notice['first_name']." ".$notice['middle_name']; ?>
+	                          Samsung 32" 1080p 60Hz LED Smart HDTV.
 	                        </span>
 	                  </div>
 	                </li>
+	                <!-- /.item -->
 	                <?php } ?>
 
 	              </ul>
 	            </div>
 	            <!-- /.box-body -->
 	            <div class="box-footer text-center">
-	              <a href="<?= base_url(); ?>" class="uppercase">View All Notices</a>
+	              <a href="<?= base_url(); ?>welcome/forums" class="uppercase">View All Forums</a>
 	            </div>
 	            <!-- /.box-footer -->
 	          </div>
@@ -105,7 +106,7 @@
                             <!-- .img-push is used to add margin to elements next to floating images -->
                             <div class="img-push">
                               <input type="text" class="form-control input-sm" name="answer_content" placeholder="Press enter to post comment">
-                              <button type="submit" class="btn btn-primary">Answer</button>
+                              <button type="submit" class="btn btn-sm btn-primary">Answer</button>
                             </div>
                           </form>
                         </div>			            

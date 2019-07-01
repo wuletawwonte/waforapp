@@ -114,8 +114,38 @@ class Admin extends CI_Controller {
 	}
 
 	public function students() {
+
+		$config = array(
+				'base_url' => base_url('admin/students'), 
+				'per_page' => 5,
+				'uri_segment'=> 3,
+				'full_tag_open' => "<ul class='pagination pagination-sm'>",
+				'full_tag_close' => "</ul>",
+				'num_tag_open' => '<li>',
+				'num_tag_close' => '</li>',
+				'cur_tag_open' => "<li class='disabled'><li class='active'><a href='#'>",
+				'cur_tag_close' => "<span class='sr-only'></span></a></li>",
+				'next_tag_open' => "<li>",
+				'next_tagl_close' => "</li>",
+				'prev_tag_open' => "<li>",
+				'prev_tagl_close' => "</li>",
+				'first_tag_open' => "<li>",
+				'first_tagl_close' => "</li>",
+				'last_tag_open' => "<li>",
+				'last_tagl_close' => "</li>"
+
+			);
+
+
+		$config['total_rows'] = $this->user->get_student_count();
+
+		$this->pagination->initialize($config);
+
+		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+		$data['links'] = $this->pagination->create_links();
+		$data['students'] = $this->user->get_notices_for_pagination($config['per_page'], $page);
 		$data['active_menu'] = 'students';
-		$data['students'] = $this->user->get_all_students();
 		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_students', $data);
 		$this->load->view('admin_templates/footer');				
@@ -123,13 +153,19 @@ class Admin extends CI_Controller {
 
 	public function settings() {
 		$data['active_menu'] = 'settings';
-		$data['system_name'] = $this->cnfg->get('system_name');
-		$data['system_name_short'] = $this->cnfg->get('system_name_short');
-		$data['default_password'] = $this->cnfg->get('default_password');
-		$data['student_council_amount'] = $this->cnfg->get('student_council_amount');
+		$data['system'] = $this->cnfg->get();
 		$this->load->view('admin_templates/header', $data);
 		$this->load->view('admin_settings', $data);
 		$this->load->view('admin_templates/footer');						
+	}
+
+	public function update_settings() {
+		if($this->cnfg->update_admin_settings()) {
+			$this->session->set_flashdata('success', 'Success, Setting successfully updated.');
+		} else {
+			$this->session->set_flashdata('error', 'Error, Unable to edit any of the settings.');
+		}
+		redirect('admin/settings');		
 	}
 
 	public function student_councils() {
@@ -142,8 +178,16 @@ class Admin extends CI_Controller {
 	}
 
 	public function add_student_council() {
-		$this->user->add_student_council();
-
+		$res = $this->cnfg->get_by('student_council_amount');
+		if($this->user->student_council_count() < $res['student_council_amount']) {
+			if($this->user->add_student_council()) {
+				$this->session->set_flashdata('success', "Success, Student succesfuly changed user type to Student Council.");
+			} else {
+				$this->session->set_flashdata('error', "Sorry, Unable to add Student.");
+			}
+		} else {
+			$this->session->set_flashdata('error', "Sorry, Student Council Reached Maximum count.");		
+		}
 		redirect('admin/student_councils');
 	}
 

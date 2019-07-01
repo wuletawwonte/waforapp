@@ -20,6 +20,8 @@ class User extends CI_Model {
 		$query = $this->db->get('users');
 
 		if($query->num_rows() == 1){
+			// $this->db->where($data);
+			// $this->db->update('users', array('last_login' => date('Y-m-d h:m:s')));
 			return true;
 		} else {
 			return false;
@@ -40,6 +42,22 @@ class User extends CI_Model {
 		$res = $this->db->get();
 		$res = $res->result_array();
 		return $res[0];
+	}
+
+	public function get_notices_for_pagination($limit = NULL, $start = NULL) {
+
+		$this->db->where('user_type', 'Student')->or_where('user_type', 'Student council');
+		$this->db->order_by('id', 'DESC');
+		$this->db->from('users');
+        $this->db->limit($limit, $start);
+		$this->db->join('departments', 'departments.did = users.department');
+		$data = $this->db->get();
+		if($data->num_rows() == 0) {
+			return false; 
+		} else {
+			return $data->result_array();		
+		}
+
 	}
 
 	public function get_all_students() {
@@ -128,10 +146,17 @@ class User extends CI_Model {
 		}		
 	}
 
+	public function student_council_count() {
+		$this->db->where('user_type', 'Student council');
+		$data = $this->db->get('users');
+		return $data->num_rows();
+	}
+
 	public function add_student_council() {
 		$data = array('user_type' => 'Student council');
 		$this->db->where('id', $this->input->post('student_id'));
 		$this->db->update('users', $data);
+		return true;
 	}
 
 	public function get_student_count() {

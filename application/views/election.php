@@ -56,38 +56,47 @@
 	        <?php } ?>
 
           	<div class="box" style="border-radius: 0; padding-top: 8px;">
-          		<div class="box-header">
-          			<h3 class="box-title">Top Questions</h3>
-          		
-  					<a href="<?= base_url(); ?>welcome/ask_question_view" class="btn btn-lg btn-info pull-right" <?php if($this->session->userdata('is_logged_in') != "TRUE") { ?> data-toggle="tooltip" title="Login first!" disabled <?php } ?> >Ask Question</a>        		
-          		</div>
-          		<div class="box-body">
+           		<div class="box-body">
+	          		<?php if(date('Y-m-d') < $election['candidate_selection_start_date']) { ?>           	
+	          			<div class="callout">
+				          <h4>Election!</h4>
+				          <p>Election Process not started yet. The Election candidate selection date is at <?= $election['candidate_selection_start_date']; ?></p>
+				        </div> 
 
-		        <div class="callout">
-		          <h4>Tip!</h4>
-		          <p>Participating in the forrum frequentlly can help the grading of the student. Active participation may yield good marks.</p>
-		        </div> 
-
-				<ul class="products-list product-list-in-box">
-					<?php foreach($forums as $forum) { ?>
-	                <li class="item">
-	                  <div class="product-img">
-	                    <a href=""> <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image"></a>
- 					  </div>
-	                  <div class="product-info">
-	                    <a href="<?= base_url(); ?>welcome/forum_details/<?= $forum['fid']; ?>" class="product-title"><?= $forum['forum_question']; ?></a>
-	                      <span class=" pull-right"><?= $forum['date_asked'];?></span>
-	                    <span class="product-description">
-	                    	<?= $forum['first_name']." ".$forum['middle_name']; ?>
-	                        </span>
-	                  </div>
-	                </li>
-	                <?php } ?>
-	                <!-- /.item -->
-	              </ul>
+	          		<?php } else if(date('Y-m-d') > $election['candidate_selection_start_date'] && date('y-m-d') < $election['candidate_selection_end_date']) { ?>           		
+						<div class="col-md-12" >
+				          <!-- Widget: user widget style 1 -->
+				          <div class="box box-widget widget-user">
+				            <!-- Add the bg color to the header using any of the bg-* classes -->
+				            <div class="widget-user-header bg-aqua-active" style="background: url('../assets/img/photo6.jpg') center center;">
+				              <h3 class="widget-user-username"><?= $this->session->userdata('name'); ?></h3>
+				              <h5 class="widget-user-desc"><?= $this->session->userdata('user_type'); ?></h5>
+				            </div>
+				            <div class="widget-user-image">
+				              <img class="img-circle" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $this->session->userdata('avatar'); ?>" alt="User Avatar" style="height: 90px;">
+				            </div>
+				            <div class="box-footer">
+				              <div class="row">
 
 
-           		</div>
+				              </div>
+				              <!-- /.row -->
+				            <div class="box-body">
+
+
+				              <strong> Election</strong><br>
+				              <p class="text-muted">Send Request for becoming Student Council Candidate.</p>
+
+				              <a href="<?php echo base_url(); ?>welcome/request_candidate" class="btn btn-info">Confirm</a>
+				              <a href="<?php echo base_url(); ?>welcome/cancel_request_candidate" class="btn">Cancel</a>
+
+				            </div>
+				            </div>
+				          </div>
+				          <!-- /.widget-user -->
+				        </div>
+	           		<?php } else if(date('Y-m-d') > $election['candidate_selection_start_date'] && date('y-m-d') < $election['candidate_selection_end_date']) { }   ?>
+           		</div>           		
            	</div>
 		</div>
 

@@ -34,14 +34,7 @@
 	              <h3 class="box-title">Notices</h3>
 
 	              <div class="box-tools">
-	                <div class="input-group input-group-sm  pull-left" style="width: 150px;">
-	                  <input type="text" name="table_search" class="form-control" placeholder="Search">
-
-	                  <div class="input-group-btn">
-	                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-	                  </div>
-	                </div>
-	                <a href="<?= base_url(); ?>student_council/create_notice_view" class="btn btn-sm btn-primary" ><i class="fa fa-plus"></i> New Notice</a>
+	                <a href="<?= base_url(); ?>student_council/create_notice_view" class="btn btn-md btn-primary" ><i class="fa fa-plus"></i> New Notice</a>
 	              </div>
 	              
 	            </div>
@@ -71,9 +64,7 @@
 	              </table>
 	              <?php } ?>
 	            </div>
-	            <div class="box-footer"> 
-	            Hellow There
-	            </div>
+	           	<div style="text-align: center;"><p><?= $links; ?></p></div>
 	            <!-- /.box-body -->
 	          </div>
 	          <!-- /.box -->

@@ -24,18 +24,18 @@
 		        </div>
 
 
-		        <form method="post" action="">
+		        <form method="post" action="<?php echo base_url(); ?>admin/update_settings">
 		            <div class="table-responsive">
 		                <table class="table table-hover">
 
 		                    <tbody><tr>
 		                        <td>System Name:</td>
-		                        <td><input type="text" name="system_name" value="<?= $system_name; ?>" class="form-control" width="32"></td>
+		                        <td><input type="text" name="system_name" value="<?= $system['system_name']; ?>" class="form-control" width="32"></td>
 		                    </tr>
 
 		                    <tr>
 		                        <td>System Name in Short:</td>
-		                        <td><input type="text" name="system_name_short" value="<?= $system_name_short; ?>" class="form-control" width="5"></td>
+		                        <td><input type="text" name="system_name_short" value="<?= $system['system_name_short']; ?>" class="form-control" width="5"></td>
 		                    </tr>
 
 		                    <tr>
@@ -49,12 +49,12 @@
 
 		                    <tr>
 		                        <td>Default Password:</td>
-		                        <td><input type="password" name="default_password" value="<?= $default_password; ?>" class="form-control" width="32"></td>
+		                        <td><input type="password" name="default_password" value="<?= $system['default_password']; ?>" class="form-control" width="32"></td>
 		                    </tr>
 
 		                    <tr>
 		                        <td>Maximum Student Councils:</td>
-		                        <td><input type="number" name="default_password" value="<?= $student_council_amount; ?>" min="1" max="50" class="form-control"></td>
+		                        <td><input type="number" name="student_council_amount" value="<?= $system['student_council_amount']; ?>" min="1" max="50" class="form-control"></td>
 		                    </tr>
 		                    <tr>
 		                        <td colspan="2" align="center">

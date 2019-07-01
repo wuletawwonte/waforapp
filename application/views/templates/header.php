@@ -47,19 +47,10 @@
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li <?php if($active_menu == "notices") { echo "class='active'"; } ?> ><a href="<?= base_url(); ?>">Notice <span class="sr-only">(current)</span></a></li>
-            <li <?php if($active_menu == "forums") { echo "class='active'"; } ?>><a href="<?= base_url(); ?>welcome/forums">Forum</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Election <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
+            <li <?php if($active_menu == "forums") { echo "class='active'"; } ?>><a href="<?= base_url(); ?>welcome/forums">Forum</a></li>   
+            <?php if($this->session->userdata('is_logged_in') == TRUE) { ?>         
+            <li <?php if($active_menu == "election") { echo "class='active'"; } ?>><a href="<?= base_url(); ?>welcome/election">Election</a></li>
+            <?php } ?>
           </ul>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -80,30 +71,7 @@
             <!-- Messages: style can be found in dropdown.less-->
 
             <?php if($this->session->userdata('is_logged_in') == TRUE) { ?>
-              
-              <!-- Notifications Menu -->
-              <li class="dropdown notifications-menu">
-                <!-- Menu toggle button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">You have 10 notifications</li>
-                  <li>
-                    <!-- Inner Menu: contains the notifications -->
-                    <ul class="menu">
-                      <li><!-- start notification -->
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                        </a>
-                      </li>
-                      <!-- end notification -->
-                    </ul>
-                  </li>
-                  <li class="footer"><a href="#">View all</a></li>
-                </ul>
-              </li>
+                            
               <?php if($this->session->userdata('user_type') == "Student council") { ?>
               <li class="user user-menu"> 
                 <a href="<?= base_url(); ?>student_council/index"><i class="fa fa-dashboard"></i> Dashboard</a>

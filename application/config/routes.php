@@ -42,5 +42,8 @@ $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
 
+$route['send-email'] = 'users';
+$route['email'] = 'users/login';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

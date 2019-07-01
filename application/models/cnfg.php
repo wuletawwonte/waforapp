@@ -20,5 +20,25 @@ class Cnfg extends CI_Model {
 		return $data->result_array()[0];
 	}
 
+	public function get_by($attrib) {
+		$this->db->select($attrib);
+		$data = $this->db->get('cnfg');
+		$data = $data->result_array()[0];
+
+		return $data;
+	}
+
+	public function update_admin_settings() {
+		$data = array(
+			'system_name' => $this->input->post('system_name'), 
+			'system_name_short' => $this->input->post('system_name_short'), 
+			'default_password' => $this->input->post('default_password'), 
+			'student_council_amount' => $this->input->post('student_council_amount')
+			);
+		$this->db->update('cnfg', $data);
+		return true;
+
+	}
+
 
 }

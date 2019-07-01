@@ -87,7 +87,7 @@
 
                 <div class="form-group col-md-2">
                   <label for="cgpa">CGPA</label>
-                  <input type="number" class="form-control" name="cgpa" max="4" min="1" required value="<?= $student['cgpa']; ?>">
+                  <input type="number" class="form-control" name="cgpa" max="4" min="1" step="0.01" required value="<?= $student['cgpa']; ?>">
                 </div>
 
             </div>

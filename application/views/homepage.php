@@ -25,8 +25,7 @@
 	                    <img src="<?= base_url(); ?>assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
 	                  </div>
 	                  <div class="product-info">
-	                    <a href="javascript:void(0)" class="product-title"><?= word_limiter($forum['forum_question'], 7); ?>
-	                      <span class="label label-warning pull-right">$1800</span></a>
+	                    <a href="<?= base_url(); ?>welcome/forum_details/<?= $forum['fid']; ?>" class="product-title"><?= word_limiter($forum['forum_question'], 7); ?></a>
 	                    <span class="product-description">
 	                          Samsung 32" 1080p 60Hz LED Smart HDTV.
 	                        </span>
@@ -90,6 +89,7 @@
 	                <!-- /.post -->
 	                <?php } ?>
 
+		           	<div style="text-align: center;"><p><?= $links; ?></p></div>
 
            		</div>
            	</div>

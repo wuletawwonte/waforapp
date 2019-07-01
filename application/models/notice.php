@@ -19,10 +19,28 @@ class Notice extends CI_Model {
 			return $data->result_array();
 		}
 	}
+
+	public function get_notices_for_pagination($limit = NULL, $start = NULL) {
+
+		$this->db->where('status', '1');
+		$this->db->order_by('nid', 'DESC');
+		$this->db->from('notices');
+        $this->db->limit($limit, $start);
+		$this->db->join('users', 'users.id = notices.user_id');
+		$data = $this->db->get();
+
+		if($data->num_rows() == 0) {
+			return false;
+		} else {
+			return $data->result_array();
+		}
+
+	}
+
 	public function get_few() {
 		$this->db->where('status', '1');
 		$this->db->order_by('nid', 'DESC');
-		$this->db->limit(5);
+		$this->db->limit(4);
 		$this->db->from('notices');
 		$this->db->join('users', 'users.id = notices.user_id');
 		$data = $this->db->get();
@@ -75,6 +93,7 @@ class Notice extends CI_Model {
 		$this->db->delete('comments');
 		return true;
 	}
+
 
 
 

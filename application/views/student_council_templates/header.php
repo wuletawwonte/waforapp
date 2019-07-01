@@ -30,7 +30,7 @@
     }
   </style>
 
-  <script src="<?= base_url(); ?>assets/bower_components/jquery/jquery.min.js"></script>
+  <script src="<?= base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="<?= base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="<?= base_url(); ?>assets/bower_components/select2/dist/js/select2.min.js"></script>
 
@@ -62,27 +62,6 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
           <!-- Tasks: style can be found in dropdown.less -->
           <li class="user user-menu"><a href="<?= base_url(); ?>welcome/index"><i class="fa fa-home"></i>Homepage</a></li>
           <!-- User Account: style can be found in dropdown.less -->
@@ -125,7 +104,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
+<!--       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
           <span class="input-group-btn">
@@ -134,7 +113,7 @@
               </span>
         </div>
       </form>
-      <!-- /.search form -->
+ -->      <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
