@@ -93,7 +93,6 @@ class Users extends CI_Controller {
 		$this->load->view('account_verification');
 	}
 
-
 	public function logout($backto) {
 		$this->session->sess_destroy();
 		if($backto == "homepage") {
@@ -102,9 +101,6 @@ class Users extends CI_Controller {
 			redirect('welcome/loginpage');
 		}
 	}
-
-
-
 
 	public function m_login() {
 		header("Access-Control-Allow-Origin: *");
@@ -155,17 +151,6 @@ class Users extends CI_Controller {
 		$data = $this->forum->get_all();
 		echo json_encode($data);
 	}
-
-	// public function m_get_user() {
-	// 	header("Access-Control-Allow-Origin: *");
-	// 	header("Content-Type: application/json");
-	// 	$data[] = $this->session->userdata('status');
-	// 	echo json_encode($data);
-	// }
-
-
-
-
 
 
 

@@ -60,8 +60,8 @@
                   <td><?= $student['year']; ?></td>
                   <td>
                     <a href="<?= base_url(); ?>admin/edit_student_view/<?= $student['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                    <a href="" class="btn btn-xs btn-warning"><i class="fa fa-key"></i></a>
-                    <a href="" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                    <a href="<?= base_url(); ?>admin/reset_password/<?= $student['id']; ?>" class="btn btn-xs btn-warning" onclick="return confirm('Do you really Want to reset this users password?')"><i class="fa fa-key"></i></a>
+                    <a href="<?= base_url(); ?>admin/delete_user/<?= $student['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>        
 

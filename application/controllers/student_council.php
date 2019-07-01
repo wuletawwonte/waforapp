@@ -129,13 +129,29 @@ class Student_council extends CI_Controller {
 	}
 
 	public function election() {
+		$conf = $this->cnfg->get();
 		$data['active_menu'] = 'election';
-		$data['election'] = $this->cnfg->get(); 
+		$data['election'] = $conf; 
 		$data['pre_candidates'] = $this->pre_candidate->get_all();
 		$data['candidates'] = $this->candidate->get_all();
+		$data['student_councils'] = $this->candidate->get_new_student_councils($conf['student_council_amount']);
 		$this->load->view('student_council_templates/header', $data);
 		$this->load->view('student_council_election', $data);
 		$this->load->view('student_council_templates/footer');				
+	}
+
+	public function finalize_election() {
+		$conf = $this->cnfg->get();
+		$this->user->unset_student_council();
+		$this->advertisement->unset_all();
+		$this->pre_candidate->unset_all();
+		$data = $this->candidate->get_new_student_councils($conf['student_council_amount']);
+
+		foreach($data as $stud) {
+			$this->user->set_student_council($stud['user_id']);
+		} 
+		$this->candidate->unset_all();		
+		redirect('users/logout');
 	}
 
 

@@ -105,7 +105,6 @@
 
 
 	           		<?php } else if(date('Y-m-d') > $election['candidate_advertisement_start_date'] && date('Y-m-d') < $election['election_start_date']) { ?>
-	           			<div class="box-body no-padding">		                  
 	           			  <ul class="users-list clearfix">
 		                  	<?php foreach($candidates as $cndt) { ?>
 		                    <li>
@@ -114,8 +113,7 @@
 		                    </li>
 		                    <?php } ?>
 		                  </ul>
-		                  <!-- /.users-list -->
-		                </div><hr>
+		                  <!-- /.users-list --><hr>
 
 	           			<?php if($is_candidate) {
 	           			?>
@@ -148,8 +146,35 @@
 			                <?php } } ?>
 
     		           	<div style="text-align: center;"><p><?= $links; ?></p></div>
+	           		<?php } else if(date('Y-m-d') > $election['election_start_date'] && date('Y-m-d') < $election['election_end_date']) { ?>
+	           			  <h4>Voting Started: </h4>
+	           			  <ul class="users-list clearfix">
+		                  	<?php foreach($candidates as $cndt) { ?>
+		                    <li>
+		                      <img src="<?= base_url(); ?>assets/img/profile_pictures/<?= $cndt['avatar'];?>" alt="User Image">
+		                      <a class="users-list-name" href=""><?= $cndt['first_name']." ".$cndt['middle_name']; ?></a>
+		                      <p>Vote Count: <?= $cndt['vote_count']; ?></p>
+		                      <a href="<?= base_url(); ?>welcome/vote_send/<?= $cndt['id']; ?>" class="btn btn-sm btn-info">Vote</a>
+		                    </li>
+		                    <?php } ?>
+		                  </ul><hr>
+		            <?php } else if(date('Y-m-d') > $election['election_end_date']) {?>
 
-	           		<?php } ?>
+
+	           			  <h4>Elected Student Councils: </h4>
+	           			  <ul class="users-list clearfix">
+		                  	<?php foreach($student_councils as $cndt) { ?>
+		                    <li>
+		                      <img src="<?= base_url(); ?>assets/img/profile_pictures/<?= $cndt['avatar'];?>" alt="User Image">
+		                      <a class="users-list-name" href=""><?= $cndt['first_name']." ".$cndt['middle_name']; ?></a>
+		                      <p>Vote Count: <?= $cndt['vote_count']; ?></p>
+		                    </li>
+		                    <?php } ?>
+		                  </ul><hr>
+
+
+		            <?php } ?>
+
            		</div>           		
            	</div>
 		</div>

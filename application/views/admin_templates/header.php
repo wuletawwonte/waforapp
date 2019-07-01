@@ -126,8 +126,8 @@
           </a>
         </li>
 
-        <li>
-          <a href="#">
+        <li <?php if($active_menu == 'import') echo "class='active'" ?>>
+          <a href="<?= base_url(); ?>admin/import_student_records">
             <i class="fa fa-file-excel-o"></i> <span>Import</span>
           </a>
         </li>

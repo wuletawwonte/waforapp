@@ -39,6 +39,15 @@ class Pre_candidate extends CI_Model {
 	}
 
 
+	public function unset_all() {
+		$this->db->empty_table('pre_candidates'); 	
+	}
+
+
+
+
+
+
 
 
 

@@ -232,6 +232,122 @@ class Admin extends CI_Controller {
 		redirect('admin/profile');
 	}
 
+	public function import_student_records() {
+		$data['active_menu'] = 'import';
+		$this->load->view('admin_templates/header', $data);
+		$this->load->view('admin_import');
+		$this->load->view('admin_templates/footer');										
+	}
+
+
+	public function uploadData() {
+
+	    if ($this->input->post('submit')) {
+            
+            $path = FCPATH . 'uploads/';
+            require_once APPPATH . "/third_party/PHPExcel.php";
+            $config['upload_path'] = $path;
+            $config['allowed_types'] = 'xlsx|xls';
+            $config['remove_spaces'] = TRUE;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);            
+            if (!$this->upload->do_upload('uploadFile')) {
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+            } else {
+                $this->session->set_flashdata('error', $this->upload->data());
+            }
+            if(empty($error)){
+              if (!empty($data['upload_data']['file_name'])) {
+                $import_xls_file = $data['upload_data']['file_name'];
+            } else {
+                $import_xls_file = 0;
+            }
+            $inputFileName = $path . $import_xls_file;
+            
+            try {
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+                $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+                $flag = true;
+                $i=0;
+                foreach ($allDataInSheet as $value) {
+                  if($flag){
+                    $flag =false;
+                    continue;
+                  }
+                  $inserdata[$i]['first_name'] = $value['A'];
+                  $inserdata[$i]['middle_name'] = $value['B'];
+                  $inserdata[$i]['last_name'] = $value['C'];
+                  $inserdata[$i]['sex'] = $value['D'];
+                  $inserdata[$i]['cgpa'] = $value['E'];
+                  $i++;
+                }               
+                $result = $this->user->import_data($inserdata);   
+                if($result){
+                  $this->session->set_flashdata('error', "Imported successfully");
+                }else{
+                  $this->session->set_flashdata('error', "Error");
+                }             
+
+          } catch (Exception $e) {
+               die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
+                        . '": ' .$e->getMessage());
+            }
+          }else{
+              $this->session->set_flashdata('error', $error['error']);
+            }
+            
+            
+        }
+	    redirect('admin/import_student_records');
+    }	
+
+
+    public function delete_user($id) {
+    	if($this->user->delete_user($id)) {
+              $this->session->set_flashdata('success', "Success, the User succesfully Deleted");
+    	} else {
+              $this->session->set_flashdata('error', "unable to delete user");
+    	}
+
+    	redirect('admin/students');
+    }
+
+
+    public function reset_password($id) {
+    	if($this->user->reset_password($id)) {
+              $this->session->set_flashdata('success', "Success, Password reset succesfull");
+    	} else {
+              $this->session->set_flashdata('error', "unable to reset password");
+    	}
+
+    	redirect('admin/students');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

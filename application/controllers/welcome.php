@@ -200,12 +200,14 @@ class Welcome extends CI_Controller {
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$data['links'] = $this->pagination->create_links();
 		$data['advertisements'] = $this->advertisement->get_all($config['per_page'], $page);
+		$conf = $this->cnfg->get();
 
 		$data['active_menu'] = "election";	
 		$data['latest_notices'] = $this->notice->get_few();	
-		$data['election'] = $this->cnfg->get(); 
+		$data['election'] = $conf; 
 		$data['is_candidate'] = $this->candidate->is_candidate();
 		$data['candidates'] = $this->candidate->get_all();
+		$data['student_councils'] = $this->candidate->get_new_student_councils($conf['student_council_amount']);
 		$this->load->view('templates/header', $data);
 		$this->load->view('election', $data);
 		$this->load->view('templates/footer');										
@@ -240,6 +242,19 @@ class Welcome extends CI_Controller {
 		}
 		redirect('welcome/election');
 
+	}
+
+	public function vote_send($cid) {
+		if(!$this->user->check_eligibility()){
+			if($this->candidate->add_vote($cid)){
+				$this->session->set_flashdata('success', "Success, You Have Succesffully Voted.");
+			} else {
+				$this->session->set_flashdata('error', "Unable to vote a Candidate.");
+			}
+		} else {
+			$this->session->set_flashdata('error', "You have allready voted for a candidate.");			
+		}
+		redirect('welcome/election');		
 	}
 
 

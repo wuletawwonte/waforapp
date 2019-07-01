@@ -80,7 +80,7 @@ class User extends CI_Model {
 			'middle_name' => $this->input->post('middle_name'),
 			'last_name' => $this->input->post('last_name'),
 			'username' => strtolower($this->input->post('first_name')).'.'.strtolower($this->input->post('middle_name')),
-			'password' => md5('123456'),
+			'password' => md5('123456@'.$this->input->post('cgpa')),
 			'email' => $this->input->post('email'),
 			'sex' => $this->input->post('sex'),
 			'department' => $this->input->post('department'),
@@ -199,6 +199,92 @@ class User extends CI_Model {
 			);
 		$this->db->update('users', $data);
 	}
+
+	public function check_eligibility() {
+		$this->db->where('id', $this->session->userdata('user_id'));
+		$data = $this->db->get('users');
+		$data = $data->result_array()[0];
+
+		return $data['vote_status'];
+	}
+
+	public function unset_student_council() {
+		$this->db->where('user_type', "Student council");
+		$this->db->update('users', array('user_type' => 'Student'));
+		$this->db->where('user_type', "Student");
+		$this->db->update('users', array('vote_status' => "0"));
+
+		return true;
+	}
+
+	public function set_student_council($uid) {
+		$this->db->where('id', $uid);
+		$this->db->update('users', array('user_type' => 'Student council'));
+
+		return true;
+	}
+
+	public function import_data($data) {
+ 
+        $res = $this->db->insert_batch('users',$data);
+        if($res){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+ 
+    }	
+
+    public function delete_user($id) {
+    	$this->db->where('id', $id);
+    	$this->db->delete('users');
+
+    	$this->db->where('user_id', $id);
+    	$this->db->delete('pre_candidates');
+
+    	$this->db->where('user_id', $id);
+    	$this->db->delete('notices');
+
+    	$this->db->where('user_id', $id);
+    	$this->db->delete('forums');
+
+    	$this->db->where('commenter_id', $id);
+    	$this->db->delete('comments');
+
+    	$this->db->where('user_id', $id);
+    	$this->db->delete('candidates');
+
+    	$this->db->where('user_id', $id);
+    	$this->db->delete('answers');
+
+    	$this->db->where('user_id', $id);
+    	$this->db->delete('advertisements');
+
+    	return true;
+    }
+
+    public function reset_password($id) {
+    	$this->db->where('id', $id);
+		$data = $this->db->get('users');
+		$data = $data->result_array()[0];    	
+
+    	$this->db->where('id', $id);
+    	$this->db->update('users', array('password' => md5('123456@'.$data['cgpa'])));
+
+    	return TRUE;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

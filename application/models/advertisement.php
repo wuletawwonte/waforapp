@@ -33,6 +33,10 @@ class Advertisement extends CI_Model {
 		return $data->num_rows();
 	}
 
+	public function unset_all() {
+		$this->db->empty_table('advertisements'); 	
+	}
+
 
 
 }

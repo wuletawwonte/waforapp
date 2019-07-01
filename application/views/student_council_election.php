@@ -74,7 +74,7 @@
 				                  <td><a href="#"><?= $student['id_number']; ?></a></td>
 				                  <td><?= $student['first_name']." ".$student['middle_name']; ?></td>
 				                  <td>
-				                    <a href="<?= base_url(); ?>student_council/remove_candidate/<?= $student['id']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i></a>
+				                    <a href="<?= base_url(); ?>student_council/remove_candidate/<?= $student['id']; ?>" class="btn btn-xs btn-danger"  onclick="return confirm('Are you sure?')"><i class="fa fa-minus"></i></a>
 				                  </td>
 				                </tr>        
 
@@ -89,9 +89,8 @@
 
 
 
-	          		<?php } else if(date('Y-m-d') > $election['candidate_advertisement_start_date'] && date('Y-m-d') < $election['election_start_date']) { ?>  
-				            <h4>Election!</h4>
-					          <p>Elected candidates advertising themselves till the election date which is <?= $election['election_start_date']; ?></p>
+	          		<?php } else if(date('Y-m-d') > $election['candidate_advertisement_start_date'] && date('Y-m-d') < $election['election_end_date']) { ?>  
+					          <p>Elected candidates advertising themselves till the election date which is <?= $election['election_start_date']; ?>, and Voting process continues till <?= $election['election_end_date'];?></p>
 					        </div> 
 		           			<div class="box-body no-padding">		                  
 		           			  <ul class="users-list clearfix">
@@ -107,8 +106,28 @@
 
 
 
-					<?php } ?>
+					<?php } else if(date('Y-m-d') > $election['election_end_date']) { ?>
 
+				        <div class="callout">
+				          <h4>Elected Student Councils!</h4>
+				          <p>Clicking this button makes the new student councils to have student council role and the old student councils will only have student role.</p>
+				        </div> 
+
+
+	           			  <ul class="users-list clearfix">
+		                  	<?php foreach($student_councils as $cndt) { ?>
+		                    <li>
+		                      <img src="<?= base_url(); ?>assets/img/profile_pictures/<?= $cndt['avatar'];?>" alt="User Image">
+		                      <a class="users-list-name" href=""><?= $cndt['first_name']." ".$cndt['middle_name']; ?></a>
+		                      <p>Vote Count: <?= $cndt['vote_count']; ?></p>
+		                    </li>
+		                    <?php } ?>
+		                  </ul><hr>
+
+		                  <a href="<?= base_url();?>student_council/finalize_election" class="btn btn-lg btn-info">Finalize Election</a>
+
+
+					<?php } ?>
 
             </div>
           </div>
