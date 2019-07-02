@@ -90,6 +90,16 @@ class Candidate extends CI_Model {
 	}
 
 
+	public function m_is_candidate() {
+		$this->db->where('user_id', $this->input->post('user_id'));
+		$data = $this->db->get('candidates');
+
+		if($data->num_rows() == 0){
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 
 

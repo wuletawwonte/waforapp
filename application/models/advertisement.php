@@ -37,6 +37,14 @@ class Advertisement extends CI_Model {
 		$this->db->empty_table('advertisements'); 	
 	}
 
+    public function m_get_all() {
+		$this->db->from('advertisements');
+		$this->db->order_by('ad_id', 'DESC');
+		$this->db->join('users', 'users.id = advertisements.user_id');
+		$data = $this->db->get();
+
+		return $data->result_array();
+	}
 
 
 }

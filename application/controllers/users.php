@@ -189,7 +189,18 @@ class Users extends CI_Controller {
 		echo json_encode('success');
 	}
 
-
+	public function m_election() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		$data['today'] = date('Y-m-d');
+		$data['advertisements'] = $this->advertisement->m_get_all();
+		$conf = $this->cnfg->get();
+		$data['election'] = $conf; 
+		$data['is_candidate'] = $this->candidate->m_is_candidate();
+		$data['candidates'] = $this->candidate->get_all();
+		$data['student_councils'] = $this->candidate->get_new_student_councils($conf['student_council_amount']);
+		echo json_encode($data);
+	}
 
 
 
