@@ -28,6 +28,17 @@ class Comment extends CI_Model {
 		return $data;
 	}
 
+	public function m_add() {
+		$data = array(
+			'commenter_id' => $this->input->post('user_id'), 
+			'notice_id' => $this->input->post('nid'),
+			'comment_content' => $this->input->post('comment_content')
+			);
+		$this->db->insert('comments', $data);
+		return true;
+	}
+
+
 
 
 

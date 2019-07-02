@@ -48,5 +48,16 @@ class Forum extends CI_Model {
 		return $data->result_array();
 	}
 
+	public function m_post_question() {
+		$data = array(
+			'forum_question' => $this->input->post('forum_question'), 
+			'user_id' => $this->input->post('user_id')
+			);
+		$this->db->insert('forums', $data);
+		return TRUE; 
+	}
+
+
+
 
 }

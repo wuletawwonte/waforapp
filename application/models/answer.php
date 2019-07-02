@@ -27,5 +27,16 @@ class Answer extends CI_Model {
 	}
 
 
+	public function m_post() {
+		$data = array(
+			'answer_content' => $this->input->post('answer_content'),
+			'forum_id' => $this->input->post('fid'),
+			'user_id' => $this->input->post('user_id') 
+			);
+		$this->db->insert('answers', $data);
+	}
+
+
+
 }
 

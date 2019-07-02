@@ -5,7 +5,7 @@ class Users extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model(array('user', 'notice', 'forum'));
+		$this->load->model(array('user', 'notice', 'forum', 'comment', 'answer'));
 	}
 
 	public function login() {
@@ -151,6 +151,47 @@ class Users extends CI_Controller {
 		$data = $this->forum->get_all();
 		echo json_encode($data);
 	}
+
+	public function m_notice() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		$data['notice'] = $this->notice->get_one($this->input->post('notice_id'));
+		$data['comments'] = $this->comment->get_comments($this->input->post('notice_id'));		
+		echo json_encode($data);
+	}
+
+	public function m_comment() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		$this->comment->m_add();
+		echo json_encode("success");
+	}
+
+	public function m_post_question() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		$this->forum->m_post_question();
+		echo json_encode("success");
+	}
+
+	public function m_question_details() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		$data['forum'] = $this->forum->get_one($this->input->post('fid'));
+		$data['answers'] = $this->answer->get_answers($this->input->post('fid'));	
+		echo json_encode($data);
+	}
+
+	public function m_answer_forum_question() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		$this->answer->m_post();
+		echo json_encode('success');
+	}
+
+
+
+
 
 
 
