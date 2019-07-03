@@ -167,9 +167,6 @@
 		                    <li>
 		                      <img src="<?= base_url(); ?>assets/img/profile_pictures/<?= $cndt['avatar'];?>" alt="User Image">
 		                      <a class="users-list-name" href=""><?= $cndt['first_name']." ".$cndt['middle_name']; ?></a>
-		                      <?php if(!$cndt['vote_count']) { } else { ?>
-		                      <p>Vote Count: <?= $cndt['vote_count']; ?></p>
-		                      <?php } ?>
 		                    </li>
 		                    <?php } ?>
 		                  </ul><hr>

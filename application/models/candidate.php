@@ -81,8 +81,11 @@ class Candidate extends CI_Model {
 		$this->db->limit($limit);
 		$this->db->join('users', 'users.id = candidates.user_id');
 		$data = $this->db->get();
-
-		return $data->result_array();
+		if($data->num_rows() == 0) {
+			return false; 
+		} else {
+			return $data->result_array();			
+		}
 	}
 
 	public function unset_all() {

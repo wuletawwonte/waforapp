@@ -8,7 +8,10 @@ class Notice extends CI_Model {
 	}
 
 	public function get_all() {
-		$this->db->where('status', '1');
+		if($this->input->post('notice_key')) {
+			$this->db->where('match(content) against ("'. $this->input->post('notice_key') .'" IN BOOLEAN MODE)');
+			$this->db->or_where('match(title) against ("'. $this->input->post('notice_key') .'" IN BOOLEAN MODE)');
+		}
 		$this->db->order_by('nid', 'DESC');
 		$this->db->from('notices');
 		$this->db->join('users', 'users.id = notices.user_id');

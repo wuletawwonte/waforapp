@@ -148,7 +148,7 @@ class Users extends CI_Controller {
 	public function m_forums() {
 		header("Access-Control-Allow-Origin: *");
 		header("Content-Type: application/json");
-		$data = $this->forum->get_all();
+		$data = $this->forum->get_all($this->input->post('notice_key'));
 		echo json_encode($data);
 	}
 
@@ -198,7 +198,11 @@ class Users extends CI_Controller {
 		$data['election'] = $conf; 
 		$data['is_candidate'] = $this->candidate->m_is_candidate();
 		$data['candidates'] = $this->candidate->get_all();
-		$data['student_councils'] = $this->candidate->get_new_student_councils($conf['student_council_amount']);
+		if($this->candidate->get_new_student_councils($conf['student_council_amount'])) {
+			$data['student_councils'] = $this->candidate->get_new_student_councils($conf['student_council_amount']);			
+		} else {
+			$data['student_councils'] = $this->user->get_student_councils();			
+		}
 		echo json_encode($data);
 	}
 
