@@ -5,7 +5,7 @@ class Users extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->model(array('user', 'notice', 'forum', 'comment', 'answer'));
+		$this->load->model(array('pre_candidate', 'user', 'notice', 'forum', 'comment', 'answer', 'advertisement', 'cnfg', 'candidate'));
 	}
 
 	public function login() {
@@ -201,6 +201,71 @@ class Users extends CI_Controller {
 		$data['student_councils'] = $this->candidate->get_new_student_councils($conf['student_council_amount']);
 		echo json_encode($data);
 	}
+
+	public function m_request_candidate() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		if($this->pre_candidate->m_check_user()){
+			$this->pre_candidate->m_request_candidate();
+			$data['message'] = "Success, Your request successfully sent.";
+			echo json_encode($data);
+		} else {
+			$data['message'] = "Sorry, User already sent student council candidate request.";
+			echo json_encode($data);
+		}
+	}
+
+	public function m_cancel_candidate_request() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		if(!$this->pre_candidate->m_check_user()){
+			$this->pre_candidate->m_cancel_candidate_request();
+			$data['message'] = "Success, Your request has been canceled.";
+			echo json_encode($data);
+
+		} else {
+			$data['message'] = "User is not student council candidate.";
+			echo json_encode($data);
+		}
+
+	}
+
+	public function m_post_advertisement() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		if($this->advertisement->m_add()){
+			$data['message'] = "Success, Your Advertisement Succesffulyy posted.";
+			echo json_encode($data);
+		} else {
+			$data['message'] = "Unable to post the advertisement.";
+			echo json_encode($data);
+		}
+	}
+
+	public function m_vote_send() {
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json");
+		if(!$this->user->m_check_eligibility()){
+			if($this->candidate->m_add_vote($this->input->post('cid'))){
+				$data['message'] = "Success, You Have Succesffully Voted.";
+				echo json_encode($data);
+			} else {
+				$data['message'] = "Unable to vote a Candidate.";
+				echo json_encode($data);
+			}
+		} else {
+			$data['message'] = "You have allready voted for a candidate.";
+			echo json_encode($data);
+		}
+	}
+
+
+
+
+
+
+
+
 
 
 

@@ -52,16 +52,31 @@
             <li <?php if($active_menu == "election") { echo "class='active'"; } ?>><a href="<?= base_url(); ?>welcome/election">Election</a></li>
             <?php } ?>
           </ul>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
-            </div>
-          </form>
+          <?php if($active_menu == "notices") { ?>
+              <form class="navbar-form navbar-left" role="search" method="POST" action="<?= base_url(); ?>welcome/index">
+                  <div class="input-group input-group-md gorm-group">
+                    <input type="text" name="notice_key" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                          <button type="submit" class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                  </div>          
+              </form>
+          <?php } else if($active_menu == "forums") { ?>
+              <form class="navbar-form navbar-left" role="search" method="POST" action="<?= base_url(); ?>welcome/forums">
+                  <div class="input-group input-group-md gorm-group">
+                    <input type="text" name="notice_key" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                          <button type="submit" class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                  </div>          
+              </form>
+          <?php } ?>
+
         </div>
         <!-- /.navbar-collapse -->
 
 
-
+ 
 
 
 

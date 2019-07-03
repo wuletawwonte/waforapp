@@ -52,7 +52,7 @@
           	<div class="box" style="border-radius: 0; padding-top: 8px;">
           		<div class="box-body">
 	                <!-- Post -->
-	                <?php foreach ($notices as $notice) { ?>
+	                <?php if(!$notices) { echo "no Records Found."; } else { foreach ($notices as $notice) { ?>
 	                <div class="post">
 	                  <div class="user-block">
 	                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $notice['avatar']; ?>" alt="user image">
@@ -66,14 +66,14 @@
 	                  <p>
 	                    <?= word_limiter($notice['content'], 50); ?>
 	                  </p>
-	                  <ul class="list-inline">
+<!-- 	                  <ul class="list-inline">
 	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
 	                    </li>
 	                    <li class="pull-right">
 	                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
 	                        (5)</a></li>
 	                  </ul>
-
+ -->
 	                  <form method="POST" action="<?= base_url(); ?>welcome/comment" class="form-horizontal" <?php if($this->session->userdata('is_logged_in') != "TRUE") echo "hidden"; ?>>
 	                    <div class="form-group margin-bottom-none">
 	                      <input type="text" name="nid" value="<?= $notice['nid']; ?>" hidden>
@@ -87,7 +87,7 @@
 	                  </form>
 	                </div>
 	                <!-- /.post -->
-	                <?php } ?>
+	                <?php }  } ?>
 
 		           	<div style="text-align: center;"><p><?= $links; ?></p></div>
 

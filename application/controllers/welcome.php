@@ -27,13 +27,13 @@ class Welcome extends CI_Controller {
 				'cur_tag_open' => "<li class='disabled'><li class='active'><a href='#'>",
 				'cur_tag_close' => "<span class='sr-only'></span></a></li>",
 				'next_tag_open' => "<li>",
-				'next_tagl_close' => "</li>",
+				'next_tag_close' => "</li>",
 				'prev_tag_open' => "<li>",
-				'prev_tagl_close' => "</li>",
+				'prev_tag_close' => "</li>",
 				'first_tag_open' => "<li>",
-				'first_tagl_close' => "</li>",
+				'first_tag_close' => "</li>",
 				'last_tag_open' => "<li>",
-				'last_tagl_close' => "</li>"
+				'last_tag_close' => "</li>"
 
 			);
 
@@ -45,7 +45,21 @@ class Welcome extends CI_Controller {
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
 		$data['links'] = $this->pagination->create_links();
-		$data['notices'] = $this->notice->get_notices_for_pagination($config['per_page'], $page);
+		if($this->input->post('notice_key')) {
+			$config['total_rows'] = $this->notice->get_search_result_notice_count($this->input->post('notice_key'));
+			$this->pagination->initialize($config);
+			$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+			$data['links'] = $this->pagination->create_links();
+
+			$data['notices'] = $this->notice->get_search_result_notices($this->input->post('notice_key'));	
+		} else {
+			$config['total_rows'] = $this->notice->get_notice_count();
+			$this->pagination->initialize($config);
+			$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+			$data['links'] = $this->pagination->create_links();
+
+			$data['notices'] = $this->notice->get_notices_for_pagination($config['per_page'], $page);		
+		}
 
 		$data['active_menu'] = "notices";		
 		$data['forums'] = $this->forum->get_few();
@@ -86,7 +100,7 @@ class Welcome extends CI_Controller {
 
 	public function forums() {
 		$data['active_menu'] = "forums";
-		$data['forums'] = $this->forum->get_all();
+		$data['forums'] = $this->forum->get_all($this->input->post('notice_key'));
 		$data['latest_notices'] = $this->notice->get_few();
 		$this->load->view('templates/header', $data);
 		$this->load->view('forums', $data);
@@ -184,13 +198,13 @@ class Welcome extends CI_Controller {
 				'cur_tag_open' => "<li class='disabled'><li class='active'><a href='#'>",
 				'cur_tag_close' => "<span class='sr-only'></span></a></li>",
 				'next_tag_open' => "<li>",
-				'next_tagl_close' => "</li>",
+				'next_tag_close' => "</li>",
 				'prev_tag_open' => "<li>",
-				'prev_tagl_close' => "</li>",
+				'prev_tag_close' => "</li>",
 				'first_tag_open' => "<li>",
-				'first_tagl_close' => "</li>",
+				'first_tag_close' => "</li>",
 				'last_tag_open' => "<li>",
-				'last_tagl_close' => "</li>"
+				'last_tag_close' => "</li>"
 
 			);
 
@@ -207,7 +221,11 @@ class Welcome extends CI_Controller {
 		$data['election'] = $conf; 
 		$data['is_candidate'] = $this->candidate->is_candidate();
 		$data['candidates'] = $this->candidate->get_all();
-		$data['student_councils'] = $this->candidate->get_new_student_councils($conf['student_council_amount']);
+		if(!$this->candidate->get_new_student_councils($conf['student_council_amount'])){
+			$data['student_councils'] = $this->user->get_student_councils();
+		} else {
+			$data['student_councils'] = $this->candidate->get_new_student_councils($conf['student_council_amount']);			
+		}
 		$this->load->view('templates/header', $data);
 		$this->load->view('election', $data);
 		$this->load->view('templates/footer');										

@@ -7,7 +7,10 @@ class Forum extends CI_Model {
 		parent::__construct();
 	}
 
-	public function get_all() {
+	public function get_all($key = NULL) {
+		if($key != NULL) {
+			$this->db->where('match(forum_question) against ("'. $key .'" IN BOOLEAN MODE)');
+		}
 		$this->db->order_by('fid', 'DESC');
 		$this->db->from('forums');
 		$this->db->join('users', 'users.id = forums.user_id');

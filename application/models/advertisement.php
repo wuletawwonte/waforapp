@@ -46,5 +46,20 @@ class Advertisement extends CI_Model {
 		return $data->result_array();
 	}
 
+	public function m_add() {
+		$data = array(
+			'user_id' => $this->input->post('user_id'), 
+			'ad_content' => $this->input->post('ad_content')
+			);
+		$this->db->insert('advertisements', $data);
+		
+		return true;
+	}
+
+
+
+
+
+
 
 }

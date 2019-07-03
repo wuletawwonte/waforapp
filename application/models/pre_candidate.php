@@ -38,12 +38,31 @@ class Pre_candidate extends CI_Model {
 		return $data;
 	}
 
-
 	public function unset_all() {
 		$this->db->empty_table('pre_candidates'); 	
 	}
 
+	public function m_check_user() {
+		$this->db->where('user_id', $this->input->post('user_id'));
+		$data = $this->db->get('pre_candidates');
+		if($data->num_rows() > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
+	public function m_request_candidate() {
+		$data = array('user_id' => $this->input->post('user_id'));
+		$this->db->insert('pre_candidates', $data);
+		return true;
+	}
+
+	public function m_cancel_candidate_request() {
+		$this->db->where('user_id', $this->input->post('user_id'));
+		$this->db->delete('pre_candidates');
+		return true;		
+	}
 
 
 

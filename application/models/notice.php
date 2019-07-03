@@ -20,9 +20,24 @@ class Notice extends CI_Model {
 		}
 	}
 
+	public function get_search_result_notices($key) {
+		$this->db->where('match(content) against ("'. $key .'" IN BOOLEAN MODE)');
+		$this->db->or_where('match(title) against ("'. $key .'" IN BOOLEAN MODE)');
+		$this->db->order_by('nid', 'DESC');
+		$this->db->from('notices');
+		$this->db->join('users', 'users.id = notices.user_id');
+		$data = $this->db->get();
+
+		if($data->num_rows() == 0) {
+			return false;
+		} else {
+			return $data->result_array();
+		}
+
+	}
+
 	public function get_notices_for_pagination($limit = NULL, $start = NULL) {
 
-		$this->db->where('status', '1');
 		$this->db->order_by('nid', 'DESC');
 		$this->db->from('notices');
         $this->db->limit($limit, $start);
@@ -62,6 +77,12 @@ class Notice extends CI_Model {
 	}
 
 	public function get_notice_count() {
+		$data = $this->db->get('notices');
+		return $data->num_rows();
+	}
+
+	public function get_search_result_notice_count($key = NULL) {
+		$this->db->where('match(content) against ("'. $key .'" IN BOOLEAN MODE)');
 		$data = $this->db->get('notices');
 		return $data->num_rows();
 	}

@@ -274,7 +274,13 @@ class User extends CI_Model {
     	return TRUE;
     }
 
+	public function m_check_eligibility() {
+		$this->db->where('id', $this->input->post('user_id'));
+		$data = $this->db->get('users');
+		$data = $data->result_array()[0];
 
+		return $data['vote_status'];
+	}
 
 
 

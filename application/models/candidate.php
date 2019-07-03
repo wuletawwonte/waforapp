@@ -102,6 +102,22 @@ class Candidate extends CI_Model {
 	}
 
 
+	public function m_add_vote($cid) {
+		$this->db->where('user_id', $cid);
+		$data = $this->db->get('candidates');
+		$data = $data->result_array()[0];
+
+		$change = array(
+			'vote_count' => $data['vote_count'] + 1
+			);
+		$this->db->where('user_id', $cid);
+		$this->db->update('candidates', $change);
+
+		$this->db->where('id', $this->input->post('user_id'));
+		$this->db->update('users', array('vote_status' => true));
+
+		return true;
+	}
 
 
 
